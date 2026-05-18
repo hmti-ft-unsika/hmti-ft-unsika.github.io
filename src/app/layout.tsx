@@ -15,8 +15,11 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "HMTI — Himpunan Mahasiswa Teknik Industri",
+  title: "Himpunan Mahasiswa Teknik Industri FT Unsika — HMTI FT Unsika",
   description: "Website Resmi Himpunan Mahasiswa Teknik Industri FT Unsika",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
