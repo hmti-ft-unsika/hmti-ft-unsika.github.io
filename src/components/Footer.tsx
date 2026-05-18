@@ -88,7 +88,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-[0.87rem] leading-[1.75] mb-[1.25rem]">
-              Himpunan Mahasiswa Teknik — Bergerak, Berkarya, Berdampak.
+              Himpunan Mahasiswa Teknik Industri FT Unsika — No Best Way, But Always A Better Way
             </p>
             <div className="text-[0.83rem] leading-[1.8]">
               <div>📍 Universitas Singaperbangsa Karawang</div>
