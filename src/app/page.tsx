@@ -514,9 +514,9 @@ export default function Home() {
 
               {/* Tags */}
               <div className="flex flex-wrap gap-2 mb-8">
-                <span className="bg-[#dce8ff] text-[#1a3a8f] text-[0.78rem] font-semibold py-[0.4rem] px-[0.9rem] rounded-full">Inovasi</span>
-                <span className="bg-[#dce8ff] text-[#1a3a8f] text-[0.78rem] font-semibold py-[0.4rem] px-[0.9rem] rounded-full">Kolaborasi</span>
-                <span className="bg-[#fef3c7] text-[#d97706] text-[0.78rem] font-semibold py-[0.4rem] px-[0.9rem] rounded-full">Kepemimpinan</span>
+                <span className="bg-[#dce8ff] text-[#1a3a8f] text-[0.78rem] font-semibold py-[0.4rem] px-[0.9rem] rounded-full">Aspirasi dan Layanan</span>
+                <span className="bg-[#dce8ff] text-[#1a3a8f] text-[0.78rem] font-semibold py-[0.4rem] px-[0.9rem] rounded-full">Pengembangan</span>
+                <span className="bg-[#fef3c7] text-[#d97706] text-[0.78rem] font-semibold py-[0.4rem] px-[0.9rem] rounded-full">Kaderisasi</span>
                 <span className="bg-[#fef3c7] text-[#d97706] text-[0.78rem] font-semibold py-[0.4rem] px-[0.9rem] rounded-full">Pengabdian</span>
               </div>
 
