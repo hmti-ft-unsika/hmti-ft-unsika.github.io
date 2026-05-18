@@ -145,7 +145,7 @@ export default function Footer() {
               <a href="https://wa.me/6289671027586" className="text-[0.87rem] flex items-center gap-[0.5rem] hover:text-[var(--color-gold-500)] transition-colors">
                 <span>💬</span> WhatsApp
               </a>
-              <a href="hmti.unsika@gmail.com" className="text-[0.87rem] flex items-center gap-[0.5rem] hover:text-[var(--color-gold-500)] transition-colors">
+              <a href="mailto:hmti.unsika@gmail.com" className="text-[0.87rem] flex items-center gap-[0.5rem] hover:text-[var(--color-gold-500)] transition-colors">
                 <span>✉️</span> hmti.unsika@gmail.com
               </a>
             </div>
