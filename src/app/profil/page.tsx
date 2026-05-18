@@ -132,7 +132,7 @@ const departemenData: DepartmentGroup[] = [
           { name: "Kevin Pramudya Firdaus", role: "Anggota", image: "/kevin.png", socialMedia: "https://www.instagram.com/i_kevin_you?igsh=MXFvZHlyYmFrZ3l5YQ==" },
           { name: "Fikryl Anbiya Dreitama", role: "Anggota", image: "/pikril.png", socialMedia: "https://www.instagram.com/yapikril" },
           { name: "Adinda Abdurahman Putri", role: "Anggota", image: "/dinda.png", socialMedia: "https://www.instagram.com/adindaaape?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
-          { name: "Kroniquel Halasson Pardede", role: "Anggota", image: "/well.png", socialMedia: "https://www.instagram.com/qellpd_?igsh=MWl5OG13NDF3bDRqeQ==" },
+          { name: "Kroniquel Halasson", role: "Anggota", image: "/well.png", socialMedia: "https://www.instagram.com/qellpd_?igsh=MWl5OG13NDF3bDRqeQ==" },
           { name: "Wina Fitri Hasanah", role: "Anggota", image: "/wina.png", socialMedia: "https://www.instagram.com/wnfirn?igsh=NG56NDc0Y2N4a3cx" },
         ],
       },
