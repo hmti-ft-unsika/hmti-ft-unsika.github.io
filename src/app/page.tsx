@@ -506,7 +506,7 @@ export default function Home() {
               <h2 className="section-title text-4xl md:text-5xl mt-3 mb-6">BERSAMA UNTUK <br />BERDAMPAK</h2>
               <div style={{ width: "50px", height: "4px", background: "linear-gradient(90deg,#f59e0b,#fbbf24)", borderRadius: "2px", marginBottom: "1.75rem" }}></div>
               <p className="text-gray-700 leading-[1.85] mb-[1.25rem] text-[1.02rem]">
-                HMTI FT Unsika berdiri sejak 1996 sebagai himpunan mahasiswa yang menaungi seluruh sivitas akademika jurusan teknik industri. Kami hadir untuk menjadi jembatan antara dunia akademik dan industri, mendorong setiap anggota untuk tumbuh secara intelektual, sosial, dan profesional.
+                HMTI FT Unsika berdiri sejak 1996 sebagai himpunan mahasiswa yang menaungi seluruh civitas akademika Teknik Industri Fakultas Teknik Unsika. Kami hadir untuk menjadi jembatan antara dunia akademik dan industri, mendorong setiap anggota untuk tumbuh secara intelektual, sosial, dan profesional.
               </p>
               <p className="text-gray-700 leading-[1.85] text-[1.02rem] mb-[2rem]">
                 Dengan semangat kolaborasi dan inovasi, kami terus berupaya memberikan dampak positif melalui program kerja yang terstruktur, kompetisi bertaraf nasional, serta forum diskusi yang membuka wawasan seluas-luasnya.
