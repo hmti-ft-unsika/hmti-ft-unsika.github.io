@@ -459,7 +459,7 @@ export default function Home() {
             </h1>
 
             <p className="text-white/70 text-[1.05rem] leading-[1.75] max-w-[480px] mb-[2.5rem]">
-              HMTI FT Unsika adalah wadah pengembangan potensi mahasiswa teknik industri ft unsika yang berkomitmen menciptakan inovasi, kolaborasi, dan kontribusi nyata bagi bangsa.
+              HMTI FT Unsika adalah wadah pengembangan potensi mahasiswa Teknik Industri FT Unsika yang berkomitmen menciptakan inovasi, kolaborasi, dan kontribusi nyata bagi bangsa.
             </p>
 
             <div className="flex flex-wrap gap-4">
