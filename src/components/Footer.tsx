@@ -4,7 +4,7 @@ import Link from "next/link";
 const socialLinks = [
   {
     name: 'TikTok',
-    href: 'https://tiktok.com',
+    href: 'https://tiktok.com/@hmtiftunsika',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5v3a3 3 0 0 1-3-3v11a7 7 0 0 1-7-7z" />
@@ -13,7 +13,7 @@ const socialLinks = [
   },
   {
     name: 'Instagram',
-    href: 'https://instagram.com',
+    href: 'https://www.instagram.com/hmti_unsika?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
@@ -24,7 +24,7 @@ const socialLinks = [
   },
   {
     name: 'Facebook',
-    href: 'https://facebook.com',
+    href: 'https://www.facebook.com/share/18a3ixpg9o/',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
@@ -33,7 +33,7 @@ const socialLinks = [
   },
   {
     name: 'X',
-    href: 'https://x.com',
+    href: 'https://x.com/HmtiUnsika',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
@@ -43,7 +43,7 @@ const socialLinks = [
   },
   {
     name: 'LinkedIn',
-    href: 'https://linkedin.com',
+    href: 'https://www.linkedin.com/in/hmti-ft-unsika-579b96360?utm_source=share_via&utm_content=profile&utm_medium=member_android',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -54,7 +54,7 @@ const socialLinks = [
   },
   {
     name: 'YouTube',
-    href: 'https://youtube.com',
+    href: 'https://youtube.com/@hmtiftunsika4709?si=LjUjxkh8jykqCIQm',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M2.5 7.1C2.5 7.1 2.3 5.4 3.1 4.6 4.1 3.5 5.2 3.5 5.8 3.4 8.5 3.2 12 3.2 12 3.2s3.5 0 6.2.2c.6.1 1.7.1 2.7 1.2.8.8 1 2.5 1 2.5s.2 2 .2 4v1.8c0 2-.2 4-.2 4s-.2 1.7-1 2.5c-1 1.1-2.3 1.1-2.9 1.2-3 .3-6.1.3-6.1.3s-3.5 0-6.2-.2c-.6-.1-1.7-.1-2.7-1.2-.8-.8-1-2.5-1-2.5s-.2-2-.2-4v-1.8c0-2 .2-4 .2-4z" />
@@ -170,7 +170,7 @@ export default function Footer() {
 
         <div className="divider mb-6"></div>
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-[0.82rem]">© 2025 HMTI. Seluruh hak cipta dilindungi.</p>
+          <p className="text-[0.82rem]">© 2026 HMTI. Seluruh hak cipta dilindungi.</p>
           <div className="flex gap-5">
             <Link href="#" className="text-[0.82rem] hover:text-[var(--color-gold-500)] transition-colors">
               Kebijakan Privasi
