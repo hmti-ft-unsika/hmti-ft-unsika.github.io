@@ -27,7 +27,7 @@ const pimpinanData: Department[] = [
   {
     title: "Badan Pengawas Pengurus",
     members: [
-      { name: "Arya Dwiriyanto", role: "Ketua Umum BPP", image: "/arya.png", socialMedia: " https://www.instagram.com/aryadwirynt?igsh=MXhyZXJ4MTdkc25ieA%3D%3D&utm_source=qr" },
+      { name: "Arya Dwiriyanto", role: "Ketua Umum BPP", image: "/arya.png", socialMedia: "#" },
       { name: "Ulfatun Khaerunnisa", role: "Ketua Komisi A", image: "/ulfah.png", socialMedia: "https://www.instagram.com/ulfaakhrnssa__?igsh=MXBlMDlyOG1hbGJsMw==" },
       { name: "Rahma Mauliani", role: "Ketua Komisi B", image: "/rahma.png", socialMedia: "https://www.instagram.com/rhmaulii" },
       { name: "Tiara Aprilya Maulidya", role: "Komisi B", image: "/tiara.png", socialMedia: "https://www.instagram.com/tiaraamldyy_?igsh=MWwxNWhsdTUyZ3kzOQ==" },
