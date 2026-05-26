@@ -319,6 +319,14 @@ const agendaBulanIni = {
       deskripsi: "Pelatihan",
       highlight: false
     },
+    {
+      id: 17,
+      tanggal: "27",
+      hari: "Rabu",
+      nama: "Open Registration SKI",
+      deskripsi: "Pendaftaran",
+      highlight: true
+    },
   ]
 };
 
