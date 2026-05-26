@@ -59,7 +59,7 @@ const departemenData: DepartmentGroup[] = [
         title: "Divisi Pendidikan",
         members: [
           { name: "Faris Audah Ramadhan", role: "Kepala Divisi Pendidikan", image: "/atep.png", socialMedia: "https://www.instagram.com/ateparis_?igsh=MWNwM3l2enA0Y3h6aw==" },
-          { name: "Abdillah Cendikia Pabe", role: "Anggota", image: "/abe.png", socialMedia: "https://www.instagram.com/cndekiapabe?igsh=MXE0aHhvN2Vkdmxtdw==" },
+          { name: "Abdillah Cendekia Pabe", role: "Anggota", image: "/abe.png", socialMedia: "https://www.instagram.com/cndekiapabe?igsh=MXE0aHhvN2Vkdmxtdw==" },
           { name: "Nasywa Amelia Azzahra", role: "Anggota", image: "/nasywa.png", socialMedia: "https://www.instagram.com/nsyw.azrr?igsh=MTc2MHJicDF4M29zdA==" },
           { name: "Ahmad Junior Syahputra", role: "Anggota", image: "/jun.png", socialMedia: "https://www.instagram.com/ahmdjuniorr_?igsh=aDVjbWo1ZWhkY3Zr" },
           { name: "Mutiara Nurliza Darmawan", role: "Anggota", image: "/muti.png", socialMedia: "https://www.instagram.com/mutiaranlzd?igsh=MXRodGN1Nmt4a3J0Zw==" },
