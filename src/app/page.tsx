@@ -332,6 +332,23 @@ const agendaBulanIni = {
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const filesArray = Array.from(e.target.files);
+      const invalidFiles = filesArray.filter(file => file.size > 5 * 1024 * 1024);
+      if (invalidFiles.length > 0) {
+        alert("Beberapa file melebihi batas ukuran maksimal 5MB.");
+        return;
+      }
+      setSelectedFiles(filesArray);
+    }
+  };
+
+  const removeFile = (index: number) => {
+    setSelectedFiles((prev) => prev.filter((_, i) => i !== index));
+  };
 
   const handleAspirasiSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -344,6 +361,11 @@ export default function Home() {
       // Ambil data teks
       const nama = formData.get('nama')?.toString() || "";
       const email = formData.get('email')?.toString() || "";
+      const npm = formData.get('npm')?.toString() || "";
+      const whatsapp = formData.get('whatsapp')?.toString() || "";
+      const angkatan = formData.get('angkatan')?.toString() || "";
+      const kategori = formData.get('kategori')?.toString() || "";
+      const jenisPermasalahan = formData.get('jenisPermasalahan')?.toString() || "";
       const aspirasi = formData.get('aspirasi')?.toString() || "";
 
       // Validasi Email Mahasiswa UNSIKA
@@ -353,33 +375,41 @@ export default function Home() {
         return;
       }
 
-      // Ambil file lampiran
-      const fileInput = form.querySelector('input[type="file"]') as HTMLInputElement;
-      const file = fileInput?.files?.[0];
-
-      let base64File = "";
-      let fileName = "";
-
-      // Proses konversi file ke Base64 jika ada file
-      if (file) {
-        const reader = new FileReader();
-        base64File = await new Promise((resolve, reject) => {
-          reader.onload = () => {
-            const result = reader.result as string;
-            resolve(result.split(',')[1]);
+      // Proses konversi semua file terpilih ke Base64 secara paralel
+      const filesPayload = await Promise.all(
+        selectedFiles.map(async (file) => {
+          const reader = new FileReader();
+          const base64 = await new Promise<string>((resolve, reject) => {
+            reader.onload = () => {
+              const result = reader.result as string;
+              resolve(result.split(',')[1]);
+            };
+            reader.onerror = (error) => reject(error);
+            reader.readAsDataURL(file);
+          });
+          return {
+            fileData: base64,
+            fileName: `${nama.replace(/\s+/g, '_')}_${Date.now()}_${file.name}`,
           };
-          reader.onerror = (error) => reject(error);
-          reader.readAsDataURL(file);
-        });
-        fileName = `${nama.replace(/\s+/g, '_')}_${file.name}`;
-      }
+        })
+      );
+
+      // Single file fallback untuk kompatibilitas backward
+      const fileData = filesPayload.length > 0 ? filesPayload[0].fileData : "";
+      const fileName = filesPayload.length > 0 ? filesPayload[0].fileName : "";
 
       const payload = {
         nama: nama,
         email: email,
+        npm: npm,
+        whatsapp: whatsapp,
+        angkatan: angkatan,
+        kategori: kategori,
+        jenisPermasalahan: jenisPermasalahan,
         aspirasi: aspirasi,
-        fileData: base64File,
+        fileData: fileData,
         fileName: fileName,
+        files: filesPayload,
       };
 
       // GUNAKAN LINK NEW DEPLOY TERBARU KAMU DI SINI
@@ -396,6 +426,7 @@ export default function Home() {
       if (response.ok) {
         alert("Sukses! Aspirasi Kamu berhasil terkirim.");
         form.reset();
+        setSelectedFiles([]);
       } else {
         throw new Error("Server merespon dengan status: " + response.status);
       }
@@ -794,47 +825,181 @@ export default function Home() {
               <h2 className="font-display font-extrabold text-white text-[clamp(1.8rem,4vw,2.8rem)] tracking-[-0.02em] mb-5 leading-[1.15]">Aksara TI</h2>
               <p className="text-white/65 mx-auto mb-8 text-[1rem] leading-[1.75]">Tuliskan permasalahan dan aspirasi yang ingin disampaikan</p>
 
-              <form onSubmit={handleAspirasiSubmit} className="flex flex-col gap-4 text-left">
-                <input
-                  type="text"
-                  name="nama"
-                  placeholder="Nama Lengkap"
-                  required
-                  className="w-full bg-white/10 border border-white/20 text-white placeholder:text-white/50 rounded-xl px-4 py-3 outline-none focus:border-[var(--color-gold-500)] transition-colors"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email Mahasiswa (@student.unsika.ac.id)"
-                  pattern=".*@student\.unsika\.ac\.id$"
-                  title="Gunakan email berakhiran @student.unsika.ac.id"
-                  required
-                  className="w-full bg-white/10 border border-white/20 text-white placeholder:text-white/50 rounded-xl px-4 py-3 outline-none focus:border-[var(--color-gold-500)] transition-colors"
-                />
-                <textarea
-                  name="aspirasi"
-                  placeholder="Saran atau Aspirasi"
-                  required
-                  rows={4}
-                  className="w-full bg-white/10 border border-white/20 text-white placeholder:text-white/50 rounded-xl px-4 py-3 outline-none focus:border-[var(--color-gold-500)] transition-colors resize-none"
-                ></textarea>
+              <form onSubmit={handleAspirasiSubmit} className="flex flex-col gap-5 text-left">
+                {/* Personal Information Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-white/80 text-[0.85rem] ml-1 font-medium">Nama Lengkap</label>
+                    <input
+                      type="text"
+                      name="nama"
+                      placeholder="Nama Lengkap"
+                      required
+                      className="w-full bg-white/10 border border-white/20 text-white placeholder:text-white/40 rounded-xl px-4 py-3 outline-none focus:border-[var(--color-gold-500)] transition-colors text-[0.95rem]"
+                    />
+                  </div>
 
-                {/* Input Lampiran */}
-                <div className="flex flex-col gap-1.5 mt-1">
-                  <label htmlFor="lampiran" className="text-white/70 text-[0.85rem] ml-1">Lampiran Bukti/Dokumen (Opsional)</label>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-white/80 text-[0.85rem] ml-1 font-medium">NPM</label>
+                    <input
+                      type="text"
+                      name="npm"
+                      placeholder="Nomor Pokok Mahasiswa (e.g. 2210631140xxx)"
+                      required
+                      className="w-full bg-white/10 border border-white/20 text-white placeholder:text-white/40 rounded-xl px-4 py-3 outline-none focus:border-[var(--color-gold-500)] transition-colors text-[0.95rem]"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-white/80 text-[0.85rem] ml-1 font-medium">Email Mahasiswa</label>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email Mahasiswa (@student.unsika.ac.id)"
+                      pattern=".*@student\.unsika\.ac\.id$"
+                      title="Gunakan email berakhiran @student.unsika.ac.id"
+                      required
+                      className="w-full bg-white/10 border border-white/20 text-white placeholder:text-white/40 rounded-xl px-4 py-3 outline-none focus:border-[var(--color-gold-500)] transition-colors text-[0.95rem]"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-white/80 text-[0.85rem] ml-1 font-medium">No. WhatsApp</label>
+                    <input
+                      type="tel"
+                      name="whatsapp"
+                      placeholder="e.g. 081234567890"
+                      required
+                      className="w-full bg-white/10 border border-white/20 text-white placeholder:text-white/40 rounded-xl px-4 py-3 outline-none focus:border-[var(--color-gold-500)] transition-colors text-[0.95rem]"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-white/80 text-[0.85rem] ml-1 font-medium">Angkatan</label>
+                    <div className="relative">
+                      <select
+                        name="angkatan"
+                        required
+                        defaultValue=""
+                        className="w-full bg-white/10 border border-white/20 text-white rounded-xl px-4 py-3 outline-none focus:border-[var(--color-gold-500)] transition-colors text-[0.95rem] appearance-none cursor-pointer [&>option]:bg-[var(--color-navy-900)] [&>option]:text-white"
+                      >
+                        <option value="" disabled hidden>Pilih Angkatan</option>
+                        <option value="22">Angkatan 22</option>
+                        <option value="23">Angkatan 23</option>
+                        <option value="24">Angkatan 24</option>
+                        <option value="25">Angkatan 25</option>
+                        <option value="26">Angkatan 26</option>
+                      </select>
+                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-white/60">
+                        <span className="text-[0.7rem]">▼</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-white/80 text-[0.85rem] ml-1 font-medium">Kategori</label>
+                    <div className="relative">
+                      <select
+                        name="kategori"
+                        required
+                        defaultValue=""
+                        className="w-full bg-white/10 border border-white/20 text-white rounded-xl px-4 py-3 outline-none focus:border-[var(--color-gold-500)] transition-colors text-[0.95rem] appearance-none cursor-pointer [&>option]:bg-[var(--color-navy-900)] [&>option]:text-white"
+                      >
+                        <option value="" disabled hidden>Pilih Kategori</option>
+                        <option value="ASPIRASI">ASPIRASI</option>
+                        <option value="AKADEMIK">AKADEMIK</option>
+                        <option value="ADMINISTRASI">ADMINISTRASI</option>
+                        <option value="INTERNAL HMTI FT UNSIKA">INTERNAL HMTI FT UNSIKA</option>
+                      </select>
+                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-white/60">
+                        <span className="text-[0.7rem]">▼</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-white/80 text-[0.85rem] ml-1 font-medium">Jenis Permasalahan</label>
+                  <input
+                    type="text"
+                    name="jenisPermasalahan"
+                    placeholder="e.g. Kerusakan AC kelas, kendala portal akademik, dll."
+                    required
+                    className="w-full bg-white/10 border border-white/20 text-white placeholder:text-white/40 rounded-xl px-4 py-3 outline-none focus:border-[var(--color-gold-500)] transition-colors text-[0.95rem]"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-white/80 text-[0.85rem] ml-1 font-medium">Aspirasi yang Disampaikan</label>
+                  <textarea
+                    name="aspirasi"
+                    placeholder="Tuliskan kritik, saran, atau detail permasalahan Anda..."
+                    required
+                    rows={4}
+                    className="w-full bg-white/10 border border-white/20 text-white placeholder:text-white/40 rounded-xl px-4 py-3 outline-none focus:border-[var(--color-gold-500)] transition-colors resize-none text-[0.95rem]"
+                  ></textarea>
+                </div>
+
+                {/* Input Lampiran Bukti */}
+                <div className="flex flex-col gap-2 mt-1">
+                  <label className="text-white/80 text-[0.85rem] ml-1 font-medium">Bukti / Lampiran (Bisa lebih dari 1, Opsional)</label>
                   <input
                     type="file"
                     id="lampiran"
                     name="lampiran"
+                    multiple
                     accept="image/*,.pdf,.doc,.docx"
-                    className="w-full bg-white/10 border border-white/20 text-white/70 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-bold file:bg-[var(--color-gold-500)] file:text-white hover:file:bg-[var(--color-gold-600)] rounded-xl px-3 py-2.5 outline-none transition-colors cursor-pointer"
+                    onChange={handleFileChange}
+                    className="w-full bg-white/10 border border-white/20 text-white/70 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-bold file:bg-[var(--color-gold-500)] file:text-white hover:file:bg-[var(--color-gold-600)] rounded-xl px-3 py-2.5 outline-none transition-colors cursor-pointer text-[0.9rem]"
                   />
-                  <span className="text-white/40 text-[0.75rem] ml-1">Format: JPG, PNG, PDF, DOCX (Max 5MB)</span>
+                  <span className="text-white/40 text-[0.72rem] ml-1">Format: JPG, PNG, PDF, DOCX (Max 5MB per file)</span>
+
+                  {/* List file terpilih yang interaktif */}
+                  {selectedFiles.length > 0 && (
+                    <div className="mt-3 bg-white/5 border border-white/10 rounded-xl p-3 flex flex-col gap-2">
+                      <div className="text-white/60 text-[0.78rem] font-semibold border-b border-white/10 pb-1.5 flex justify-between items-center">
+                        <span>File Terpilih ({selectedFiles.length})</span>
+                        <button
+                          type="button"
+                          onClick={() => setSelectedFiles([])}
+                          className="text-red-400 hover:text-red-300 text-[0.72rem] transition-colors"
+                        >
+                          Hapus Semua
+                        </button>
+                      </div>
+                      <div className="flex flex-col gap-1.5 max-h-[150px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10">
+                        {selectedFiles.map((file, idx) => (
+                          <div key={idx} className="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2 border border-white/5 hover:border-white/10 transition-colors">
+                            <div className="flex items-center gap-2 overflow-hidden mr-2">
+                              <span className="text-[1rem] shrink-0">
+                                {file.type.startsWith('image/') ? '🖼️' : '📄'}
+                              </span>
+                              <span className="text-white/80 text-[0.8rem] truncate font-mono">
+                                {file.name}
+                              </span>
+                              <span className="text-white/45 text-[0.7rem] shrink-0">
+                                ({(file.size / (1024 * 1024)).toFixed(2)} MB)
+                              </span>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => removeFile(idx)}
+                              className="text-white/45 hover:text-red-400 p-1 rounded transition-colors text-[0.8rem]"
+                              title="Hapus file ini"
+                            >
+                              ✕
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
+
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full btn-gold py-3.5 mt-2 flex justify-center items-center font-bold text-[1rem] disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="w-full btn-gold py-3.5 mt-4 flex justify-center items-center font-bold text-[1rem] disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {isLoading ? "Mengirim..." : "Kirim Suara Saya"}
                 </button>
