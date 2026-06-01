@@ -413,7 +413,7 @@ export default function Home() {
       };
 
       // GUNAKAN LINK NEW DEPLOY TERBARU KAMU DI SINI
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbwR2plMXGamKc9VZBBY4aswp_fXZ61XxvGJfErvdIf1eOXJVoaB5dO7ic6BNUkCiJ_D/exec';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwr74CCqz-CoJztuGf2BP7-2IqcYxTkoVzDSAo89GWpGOtriAzpSGTtZnOUdUUHL5Dx/exec';
 
       const response = await fetch(scriptURL, {
         method: 'POST',
