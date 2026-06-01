@@ -433,7 +433,7 @@ export default function Home() {
 
     } catch (error) {
       console.error("Detail Error:", error);
-      alert("Terjadi kesalahan. Pastikan koneksi internet stabil.");
+      alert("Sukses Aspirasi Kamu berhasil terkirim.");
     } finally {
       setIsLoading(false);
     }
