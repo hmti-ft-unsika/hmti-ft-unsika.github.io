@@ -188,7 +188,7 @@ const kabinetData = {
 // Silakan ubah data di bawah ini setiap bulan untuk update proker
 // ==========================================
 const agendaBulanIni = {
-  bulan: "Bulan Mei",
+  bulan: "Bulan Juni",
   tahun: "2026",
   kegiatan: [
     {
@@ -676,7 +676,7 @@ export default function Home() {
               <div className="card-icon bg-[#c7d2fe]">📚</div>
               <h3 className="font-display font-bold text-[var(--color-navy-900)] mb-[0.5rem] text-[1rem]">Pika</h3>
               <p className="text-[0.85rem] text-gray-500 leading-[1.65]">Koleksi modul, jurnal, dan materi pembelajaran digital eksklusif untuk mahasiswa.</p>
-              <Link href="https://pikahmtiftunsika.great-site.net/index.php" className="text-[0.8rem] font-bold text-[var(--color-gold-500)] mt-4 inline-block tracking-[0.02em]">Akses →</Link>
+              <Link href="https://hmti.ft.unsika.ac.id/pika/index.html" className="text-[0.8rem] font-bold text-[var(--color-gold-500)] mt-4 inline-block tracking-[0.02em]">Akses →</Link>
             </div>
           </div>
 
