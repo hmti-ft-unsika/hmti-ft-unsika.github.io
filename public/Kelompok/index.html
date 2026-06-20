@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0A0F1E">
+<title>Selamat Datang Teknik Industri</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#0A0F1E;--s1:#0F1628;--s2:#141D35;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#F0F4FF;--sub:#7B8DB0;--dim:#3A4868;
+  --ff:'Inter',system-ui,sans-serif;--accent:#4F8EF7;
+}
+html,body{height:100%;overflow:hidden}
+body{min-height:100dvh;height:100dvh;background:var(--bg);font-family:var(--ff);display:flex;align-items:center;justify-content:center}
+.amb{position:fixed;pointer-events:none;border-radius:50%;filter:blur(90px);transition:background .7s,opacity .7s}
+.a1{width:300px;height:300px;top:-100px;right:-80px;background:var(--accent);opacity:.055}
+.a2{width:240px;height:240px;bottom:-80px;left:-60px;background:var(--accent);opacity:.035}
+
+/* shell */
+.shell{width:100%;max-width:390px;height:100dvh;display:flex;flex-direction:column;position:relative;overflow:hidden}
+
+/* topbar */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 10px;flex-shrink:0}
+.step-lbl{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.scroll-hint{font-size:11px;font-weight:500;color:var(--dim);letter-spacing:.05em;transition:opacity .4s}
+.scroll-hint.hidden{opacity:0;pointer-events:none}
+
+/* progress */
+.prog-wrap{padding:0 20px;flex-shrink:0}
+.prog-track{height:2px;background:var(--s2);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;border-radius:2px;background:var(--accent);transition:width .45s cubic-bezier(.4,0,.2,1)}
+
+/* slide area */
+.slide-area{flex:1;position:relative;overflow:hidden;margin-top:18px}
+.slide{position:absolute;inset:0;padding:0 20px 16px;overflow-y:scroll;overflow-x:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.slide::-webkit-scrollbar{display:none}
+.slide.in {animation:sIn  .35s cubic-bezier(.22,1,.36,1) both}
+.slide.out{animation:sOut .22s ease both}
+@keyframes sIn {from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:none}}
+@keyframes sOut{to{opacity:0;transform:translateX(-16px)}}
+
+/* content pieces */
+.slide-icon{
+  width:52px;height:52px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;border:1px solid var(--border)
+}
+.eyebrow{display:inline-flex;align-items:center;font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:14px}
+.slide-title{font-size:23px;font-weight:700;color:var(--text);line-height:1.25;margin-bottom:14px;letter-spacing:-.02em}
+.slide-body p{font-size:14px;line-height:1.75;color:var(--sub);margin-bottom:12px}
+.slide-body p b{color:var(--text);font-weight:600}
+
+.cards{display:flex;flex-direction:column;gap:8px;margin:14px 0}
+.card{background:var(--s1);border:1px solid var(--border);border-radius:11px;padding:11px 13px;display:flex;align-items:flex-start;gap:11px}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:7px}
+.ct{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
+.cs{font-size:12px;color:var(--sub);line-height:1.55}
+
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
+.stat{background:var(--s1);border:1px solid var(--border);border-radius:11px;padding:13px 10px;text-align:center}
+.sv{font-size:20px;font-weight:700;line-height:1;margin-bottom:4px}
+.sl{font-size:11px;color:var(--sub);font-weight:500}
+
+.quote{border-left:2px solid var(--accent);padding:10px 13px;margin:14px 0;background:var(--s1);border-radius:0 10px 10px 0}
+.quote p{font-size:13px;font-style:italic;color:var(--sub);margin:0;line-height:1.6}
+
+.motto{background:var(--s1);border:1px solid var(--border2);border-radius:12px;padding:15px;text-align:center;margin:14px 0}
+.mm{font-size:14px;font-weight:700;line-height:1.4;margin-bottom:3px}
+.mt{font-size:11px;color:var(--sub)}
+
+.dept-label{font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 8px;border-radius:5px;display:inline-block;margin-bottom:8px}
+.proker-list{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.pk{background:var(--s1);border:1px solid var(--border);border-radius:9px;padding:10px 13px}
+.pk-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
+.pk-desc{font-size:12px;color:var(--sub);line-height:1.55}
+
+.socials{display:flex;flex-direction:column;gap:7px;margin:12px 0}
+.srow{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:10px 13px;display:flex;align-items:center;gap:10px}
+.si{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;letter-spacing:.02em;flex-shrink:0}
+
+.sentinel{height:1px;flex-shrink:0}
+
+/* picker (group selection) */
+.picker-grid{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.picker-card{
+  display:flex;align-items:center;gap:12px;
+  width:100%;text-align:left;
+  background:var(--s1);border:1px solid var(--border);
+  border-radius:12px;padding:12px 14px;
+  font-family:var(--ff);cursor:pointer;
+  transition:border-color .2s,transform .15s,background .2s;
+  -webkit-user-select:none;user-select:none;
+}
+.picker-card:active{transform:scale(.97);background:var(--s2)}
+.picker-card:hover{border-color:var(--pc,var(--accent))}
+.picker-num{
+  flex-shrink:0;width:32px;height:32px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;
+}
+.picker-info{flex:1;display:flex;flex-direction:column;gap:1px;min-width:0}
+.picker-kelompok{font-size:13.5px;font-weight:600;color:var(--text)}
+.picker-nama{font-size:12px;color:var(--sub)}
+.picker-arrow{flex-shrink:0;color:var(--dim);font-size:15px}
+
+/* bottom */
+.bottom{flex-shrink:0;padding:14px 20px 0}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px;border:none;border-radius:12px;font-family:var(--ff);font-size:14.5px;font-weight:600;cursor:pointer;letter-spacing:-.01em;transition:opacity .2s,transform .15s;text-decoration:none;-webkit-user-select:none;user-select:none;color:#fff;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn:active{transform:scale(.97)}
+.btn.locked{opacity:.3;cursor:default;pointer-events:none}
+
+/* watermark */
+.wm{flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:10px 20px 20px}
+.wm-inner{display:flex;align-items:center;gap:6px;padding:4px 10px;background:var(--s2);border:1px solid var(--border);border-radius:20px}
+.wm-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;transition:background .4s}
+.wm-text{font-size:10px;font-weight:500;color:var(--dim);letter-spacing:.02em}
+.wm-text b{color:var(--sub);font-weight:600}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="amb a1" id="a1"></div>
+<div class="amb a2" id="a2"></div>
+<div class="shell">
+  <div class="topbar">
+    <span class="step-lbl" id="stepLbl"></span>
+    <span class="scroll-hint hidden" id="scrollHint">scroll ↓</span>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-track"><div class="prog-fill" id="pFill"></div></div>
+  </div>
+  <div class="slide-area" id="slideArea"></div>
+  <div class="bottom" id="bottom"></div>
+  <div class="wm">
+    <div class="wm-inner">
+      <div class="wm-dot" id="wmDot"></div>
+      <span class="wm-text">Dibuat oleh <b>Divisi Riset · HMTI FT UNSIKA</b></span>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   SAKLAR AKTIF / NONAKTIF WEBSITE
+   
+   Ganti  true  jadi  false  untuk MENUTUP website
+   (semua link kelompok akan menampilkan halaman "ospek sudah berakhir").
+   
+   Ganti balik  false  jadi  true  untuk MEMBUKA lagi.
+   
+   Setelah ubah, simpan file ini lalu upload/commit ulang ke GitHub.
+═══════════════════════════════════════════════════════ */
+const WEBSITE_AKTIF = true;
+
+
+/* ─────────────────────────────────────────────────────
+   DATA NARAHUBUNG PER KELOMPOK
+   Akses via URL: ?kelompok=1  sampai  ?kelompok=8
+   Contoh: selamat-datang-maba.html?kelompok=3
+───────────────────────────────────────────────────── */
+const PJ_LIST = {
+  1: { nama: "Kang Aufan",    wa: "628985618869" },
+  2: { nama: "Kang Albert",   wa: "6285716087411" },
+  3: { nama: "Kang Fauzan",   wa: "6281210194626" },
+  4: { nama: "Kang Satrio",   wa: "6281585025624" },
+  5: { nama: "Teh Syifa",     wa: "6285810292851" },
+  6: { nama: "Teh Wina",      wa: "6288299082109" },
+  7: { nama: "Teh Shelvina",  wa: "6285716471112" },
+  8: { nama: "Teh Aqeela",    wa: "6285973972025" }
+};
+
+/* Ambil nomor kelompok dari URL, contoh: ?kelompok=2 */
+const urlParams = new URLSearchParams(window.location.search);
+const kelompokParam = parseInt(urlParams.get('kelompok'), 10);
+const validKelompok = PJ_LIST.hasOwnProperty(kelompokParam) ? kelompokParam : null;
+
+/* PJ selalu punya nilai (default ke Kelompok 1) supaya SLIDES tidak error.
+   Halaman pemilih akan tampil dulu kalau validKelompok null. */
+const activeKelompok = validKelompok || 1;
+const PJ = {
+  nama: PJ_LIST[activeKelompok].nama,
+  kelompok: activeKelompok,
+  wa: PJ_LIST[activeKelompok].wa,
+  pesan: `Assalamualaikum Wr. Wb. / Selamat pagi, Kak
+
+Mohon maaf sebelumnya mengganggu waktunya. Perkenalkan, saya [Nama Lengkap], mahasiswa baru Program Studi Teknik Industri dengan NIM [NIM], yang tergabung dalam Kelompok ${activeKelompok}.
+Sebelumnya saya ingin mengenal lebih dekat dengan Kakak selaku PJ kelompok kami. Apabila berkenan, bolehkah saya meminta link grup WhatsApp kelompoknya, Kak? Agar saya dapat segera bergabung dan tidak ketinggalan informasi terkait kegiatan selanjutnya.
+
+Atas perhatian dan kesediaannya, saya ucapkan terima kasih banyak, Kak.
+Wassalamualaikum Wr. Wb.`
+};
+
+/* ─────────────────────────────────────────────────────
+   SEMUA DATA BERSUMBER DARI hmti.ft.unsika.ac.id
+   Diakses & diverifikasi 19 Juni 2026
+───────────────────────────────────────────────────── */
+
+/* ── Icon set (minimalist line icons, no emoji) ── */
+const ICONS = {
+  wave: '<path d="M7 11V7a2 2 0 0 1 4 0v5"/><path d="M11 11V5a2 2 0 0 1 4 0v6"/><path d="M15 11V6a2 2 0 0 1 4 0v8a7 7 0 0 1-7 7h-1a7 7 0 0 1-6-3.4L3.3 13a1.8 1.8 0 0 1 2.8-2.2L7 12"/>',
+  factory: '<path d="M3 21V10l5 3V10l5 3V10l5 3V5h3v16H3z"/><path d="M7 21v-4M12 21v-4M17 21v-4"/>',
+  building: '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 21v-4h6v4"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1"/>',
+  telescope: '<path d="M3 11l13-6 1.5 3L5 14z"/><path d="M14 7l6 3-1 2-6-3"/><path d="M9 13l-2 7"/><path d="M5 21h6"/><circle cx="5" cy="14" r="1.5"/>',
+  book: '<path d="M4 5a2 2 0 0 1 2-2h6v18H6a2 2 0 0 0-2 2V5z"/><path d="M20 5a2 2 0 0 0-2-2h-6v18h6a2 2 0 0 1 2 2V5z"/>',
+  flask: '<path d="M9 3h6M10 3v6l-5.5 9.5A2 2 0 0 0 6.2 21h11.6a2 2 0 0 0 1.7-2.5L14 9V3"/><path d="M7.5 14h9"/>',
+  briefcase: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/>',
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/>',
+  target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+  device: '<rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/>',
+  chat: '<path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-4-1L3 20l1.3-3.9a8.4 8.4 0 0 1-1.1-4.2 8.4 8.4 0 0 1 9-8.4 8.5 8.5 0 0 1 8.8 8z"/>',
+  door: '<path d="M5 21V4a1 1 0 0 1 1-1h8.5L19 6.5V21"/><path d="M5 21h14"/><path d="M14.5 3v18"/><circle cx="12" cy="12" r="0.8" fill="currentColor"/>'
+};
+
+function svgIcon(name, size=28){
+  const path = ICONS[name] || '';
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
+}
+
+const SLIDES = [
+
+/* 1 · Sambutan */
+{ accent:"#4F8EF7", svg:"wave", eyebrow:"Selamat Datang",
+  title:`Halo, Maba Kelompok ${PJ.kelompok}!`,
+  html:`
+    <p>Selamat! Kamu sekarang resmi menjadi bagian dari <b>Program Studi Teknik Industri, Fakultas Teknik, Universitas Singaperbangsa Karawang (UNSIKA)</b> dan tergabung di <b>Kelompok ${PJ.kelompok}</b> untuk kegiatan ospek angkatan ini.</p>
+    <p>Sebelum kegiatan dimulai, yuk kenalan dulu sama prodi dan organisasi mahasiswamu. Scroll sampai bawah di setiap halaman untuk lanjut ke halaman berikutnya!</p>
+    <div class="cards">
+      <div class="card"><div class="dot" style="background:#4F8EF7"></div><div><div class="ct">Universitas Singaperbangsa Karawang</div><div class="cs">PTN di Jl. HS. Ronggo Waluyo, Puseurjaya, Telukjambe Timur, Karawang, Jawa Barat 41361</div></div></div>
+      <div class="card"><div class="dot" style="background:#4F8EF7"></div><div><div class="ct">Prodi TI · Fakultas Teknik</div><div class="cs">Berdiri 1996 · SK No. 36/DIKTI/Kep/1996 · Akreditasi B (BAN-PT)</div></div></div>
+      <div class="card"><div class="dot" style="background:#4F8EF7"></div><div><div class="ct">Gelar: Sarjana Teknik (S.T.)</div><div class="cs">Masa studi 8 semester · 144 SKS</div></div></div>
+    </div>
+  `
+},
+
+/* 2 · Tentang TI */
+{ accent:"#34C98E", svg:"factory", eyebrow:"Mengenal Prodi",
+  title:"Apa Itu Teknik Industri?",
+  html:`
+    <p><b>Teknik Industri (TI)</b> mempelajari cara merancang, mengoptimalkan, dan mengelola sistem yang terdiri dari manusia, mesin, material, informasi, dan energi secara efisien dan efektif.</p>
+    <p>Prodi ini menggunakan kurikulum berbasis <b>Outcome-Based Education (OBE)</b> sesuai Standar Nasional Pendidikan Tinggi. Mahasiswa juga didorong aktif mengikuti program <b>Kampus Merdeka (MBKM)</b> untuk memperkaya pengalaman di luar kampus.</p>
+    <div class="stats">
+      <div class="stat"><div class="sv" style="color:#34C98E">1996</div><div class="sl">Tahun Berdiri</div></div>
+      <div class="stat"><div class="sv" style="color:#34C98E">B</div><div class="sl">Akreditasi BAN-PT</div></div>
+      <div class="stat"><div class="sv" style="color:#34C98E">600+</div><div class="sl">Mahasiswa Aktif</div></div>
+      <div class="stat"><div class="sv" style="color:#34C98E">21</div><div class="sl">Dosen Pengajar</div></div>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="dot" style="background:#34C98E"></div><div><div class="ct">Manajemen Produksi dan Operasi</div><div class="cs">Merancang proses produksi yang efisien dan minim pemborosan</div></div></div>
+      <div class="card"><div class="dot" style="background:#34C98E"></div><div><div class="ct">Ergonomi dan Keselamatan Kerja</div><div class="cs">Merancang lingkungan kerja yang aman, nyaman, dan produktif bagi manusia</div></div></div>
+      <div class="card"><div class="dot" style="background:#34C98E"></div><div><div class="ct">Pengendalian dan Penjaminan Kualitas</div><div class="cs">Memastikan setiap produk selalu memenuhi standar yang telah ditetapkan</div></div></div>
+      <div class="card"><div class="dot" style="background:#34C98E"></div><div><div class="ct">Riset Operasi dan Simulasi Sistem</div><div class="cs">Menggunakan matematika dan komputasi untuk menemukan keputusan terbaik</div></div></div>
+      <div class="card"><div class="dot" style="background:#34C98E"></div><div><div class="ct">Perencanaan dan Pengendalian Produksi</div><div class="cs">Mengatur alur produksi agar tepat waktu, tepat jumlah, dan efisien</div></div></div>
+    </div>
+    <div class="quote"><p>Visi Prodi: "Menjadi Program Studi Teknik Industri yang berdaya saing di tingkat nasional"</p></div>
+  `
+},
+
+/* 3 · Profil HMTI */
+{ accent:"#F5A623", svg:"building", eyebrow:"Tentang HMTI",
+  title:"HMTI FT UNSIKA",
+  html:`
+    <p><b>Himpunan Mahasiswa Teknik Industri (HMTI) FT UNSIKA</b> adalah organisasi kemahasiswaan resmi tingkat prodi yang dibentuk dan dijalankan langsung oleh mahasiswa TI UNSIKA. Berdiri sejak <b>1996</b>, HMTI menjadi jembatan antara dunia akademik dan industri bagi seluruh mahasiswa TI.</p>
+    <p>Saat ini HMTI berjalan di bawah <b>Kabinet Sahitya Ardaya</b> (2026/2027). Kabinet ini berlandaskan kebersamaan yang selaras dan harmonis <b>(Sahitya)</b> sebagai pondasinya, guna melahirkan kekuatan hati, daya juang, dan energi progresif <b>(Ardaya)</b> sebagai output-nya.</p>
+    <div class="stats">
+      <div class="stat"><div class="sv" style="color:#F5A623">68</div><div class="sl">Anggota Khusus</div></div>
+      <div class="stat"><div class="sv" style="color:#F5A623">23</div><div class="sl">Program Kerja</div></div>
+      <div class="stat"><div class="sv" style="color:#F5A623">4</div><div class="sl">Departemen</div></div>
+      <div class="stat"><div class="sv" style="color:#F5A623">1996</div><div class="sl">Tahun Berdiri</div></div>
+    </div>
+    <div class="motto">
+      <div class="mm" style="color:#F5A623">"No Best Way, But Always A Better Way"</div>
+      <div class="mt">Motto resmi HMTI FT UNSIKA</div>
+    </div>
+    <div class="quote"><p>Visi: "Mewujudkan HMTI FT Unsika sebagai poros pengembangan diri mahasiswa Teknik Industri FT Unsika yang responsif, progresif dan berdaya guna"</p></div>
+  `
+},
+
+/* 4 · SYNERGY — Proker Bersama Dept. Pendidikan & Riset */
+{ accent:"#7B6EF6", svg:"telescope", eyebrow:"Proker Bersama · Pendidikan & Riset",
+  title:"SYNERGY",
+  html:`
+    <p><b>SYNERGY</b> adalah program kerja bersama milik <b>Departemen Pendidikan & Riset</b> yang melibatkan kolaborasi antara Divisi Pendidikan dan Divisi Riset. Program ini berdiri sendiri sebagai proker unggulan lintas divisi.</p>
+    <div class="dept-label" style="color:#7B6EF6;background:rgba(123,110,246,0.12)">Proker Bersama</div>
+    <div class="proker-list">
+      <div class="pk">
+        <div class="pk-name">SYNERGY</div>
+        <div class="pk-desc">Seminar nasional dengan fokus pada perkembangan sains dan teknologi, seperti Internet of Things (IoT), Big Data, Robotika, dan Artificial Intelligence (AI). Diselenggarakan bersama oleh Divisi Pendidikan dan Divisi Riset HMTI FT UNSIKA</div>
+      </div>
+    </div>
+  `
+},
+
+/* 5 · Divisi Pendidikan */
+{ accent:"#7B6EF6", svg:"book", eyebrow:"Departemen Pendidikan & Riset",
+  title:"Divisi Pendidikan",
+  html:`
+    <p>Divisi Pendidikan fokus pada pengembangan akademik dan soft skill mahasiswa TI UNSIKA melalui <b>4 program kerja</b> aktif.</p>
+    <div class="dept-label" style="color:#7B6EF6;background:rgba(123,110,246,0.12)">4 Program Kerja</div>
+    <div class="proker-list">
+      <div class="pk">
+        <div class="pk-name">IEC (Industrial Engineering Camp)</div>
+        <div class="pk-desc">Rangkaian kegiatan pengenalan akademik, organisasi, dan pengembangan soft skill mahasiswa TI FT UNSIKA yang dikemas dalam tiga tahap: Pra-IEC, Seminar, dan Camp Utama</div>
+      </div>
+      <div class="pk">
+        <div class="pk-name">I-Pedia</div>
+        <div class="pk-desc">Konten edukatif melalui Instagram dan TikTok mengenai peminatan, prospek kerja, dan perangkat lunak di lingkup Teknik Industri</div>
+      </div>
+      <div class="pk">
+        <div class="pk-name">MC (Mentorship Class)</div>
+        <div class="pk-desc">Program pelatihan pengembangan minat mahasiswa dalam mempelajari software pendukung akademik dan keterampilan digital di bawah bimbingan mentor berpengalaman</div>
+      </div>
+      <div class="pk">
+        <div class="pk-name">SIKAP</div>
+        <div class="pk-desc">Wadah pengembangan soft skill organisasi, kepanitiaan, dan kesekretariatan melalui forum diskusi serta uji kompetensi untuk mengukur kemampuan peserta</div>
+      </div>
+    </div>
+  `
+},
+
+/* 6 · Divisi Riset */
+{ accent:"#7B6EF6", svg:"flask", eyebrow:"Departemen Pendidikan & Riset",
+  title:"Divisi Riset",
+  html:`
+    <p>Divisi Riset mendorong mahasiswa TI UNSIKA untuk aktif dalam kajian strategis dan penulisan ilmiah melalui <b>3 program kerja</b> aktif.</p>
+    <div class="dept-label" style="color:#7B6EF6;background:rgba(123,110,246,0.12)">3 Program Kerja</div>
+    <div class="proker-list">
+      <div class="pk">
+        <div class="pk-name">Kastrat</div>
+        <div class="pk-desc">Program pengkajian isu strategis yang dilakukan melalui tahap pemilihan masalah, riset data tervalidasi, diskusi evaluasi, hingga publikasi hasil kajian di media sosial</div>
+      </div>
+      <div class="pk">
+        <div class="pk-name">T2I (Tata Tulis Ilmiah)</div>
+        <div class="pk-desc">Program pelatihan yang dirancang untuk memberikan pemahaman kepada mahasiswa TI FT UNSIKA mengenai Karya Tulis Ilmiah beserta tata cara mempublikasikannya</div>
+      </div>
+      <div class="pk">
+        <div class="pk-name">PIKA</div>
+        <div class="pk-desc">Sistem basis data berbasis website terpadu yang menyediakan materi perkuliahan, panduan akademik, dan software pendukung bagi mahasiswa TI FT UNSIKA dalam satu wadah terstruktur</div>
+      </div>
+    </div>
+    <div class="quote"><p>Divisi Riset adalah divisi yang bertanggung jawab atas pembuatan website ini. Bangga menjadi bagian dari gerakan HMTI!</p></div>
+  `
+},
+
+/* 6 · Dept Kewirausahaan */
+{ accent:"#F5A623", svg:"briefcase", eyebrow:"Departemen Kewirausahaan",
+  title:"Industri Kreatif & Project",
+  html:`
+    <p>Departemen Kewirausahaan terdiri dari <b>Divisi Industri Kreatif</b> (4 proker) dan <b>Divisi Project</b> (1 proker), mendorong mahasiswa TI untuk menumbuhkan jiwa wirausaha dan kreativitas.</p>
+    <div class="dept-label" style="color:#F5A623;background:rgba(245,166,35,0.12)">Divisi Industri Kreatif</div>
+    <div class="proker-list">
+      <div class="pk">
+        <div class="pk-name">BPC (Business Plan Competition)</div>
+        <div class="pk-desc">Kompetisi pengembangan ide bisnis inovatif dan strategis bagi mahasiswa yang mencakup tahap penyusunan proposal, presentasi final, hingga implementasi bisnis berkelanjutan</div>
+      </div>
+      <div class="pk">
+        <div class="pk-name">DEM (Digital Entrepreneurship Media)</div>
+        <div class="pk-desc">Program edukasi kewirausahaan berbasis konten video yang diproduksi secara terstruktur dan didistribusikan melalui platform media sosial</div>
+      </div>
+      <div class="pk">
+        <div class="pk-name">IEE (Industrial Engineering Entrepreneurship)</div>
+        <div class="pk-desc">Program pelatihan dan pengembangan kewirausahaan bagi mahasiswa TI FT UNSIKA yang diimplementasikan melalui kegiatan Expo untuk menumbuhkan jiwa wirausaha</div>
+      </div>
+      <div class="pk">
+        <div class="pk-name">SNK (Seminar Nasional Kewirausahaan)</div>
+        <div class="pk-desc">Program seminar yang berfokus pada pemberian pemahaman mengenai pentingnya inovasi dan creative thinking bagi mahasiswa TI UNSIKA</div>
+      </div>
+    </div>
+    <div class="dept-label" style="color:#E05CCA;background:rgba(224,92,202,0.12)">Divisi Project</div>
+    <div class="proker-list">
+      <div class="pk">
+        <div class="pk-name">IndusMart</div>
+        <div class="pk-desc">Program kerja bidang penjualan produk melalui sub-program Marketplace dan TIPO yang bertujuan untuk menambah pemasukan serta mendukung operasional HMTI FT UNSIKA</div>
+      </div>
+    </div>
+  `
+},
+
+/* 7 · Dept Eksternal */
+{ accent:"#34C98E", svg:"globe", eyebrow:"Departemen Eksternal",
+  title:"Hubungan Luar & Kominfo",
+  html:`
+    <p>Departemen Eksternal mengelola hubungan HMTI dengan pihak luar kampus dan penyebaran informasi, terbagi menjadi <b>Divisi Hubungan Luar</b> (2 proker), <b>1 proker lintas divisi bersama Riset</b>, dan <b>Divisi Kominfo</b> (1 proker).</p>
+    <div class="dept-label" style="color:#34C98E;background:rgba(52,201,142,0.12)">Divisi Hubungan Luar</div>
+    <div class="proker-list">
+      <div class="pk">
+        <div class="pk-name">SKI (Studi Kunjungan Industri)</div>
+        <div class="pk-desc">Program kunjungan langsung ke perusahaan bagi mahasiswa aktif TI FT UNSIKA untuk mengobservasi proses produksi secara nyata di lapangan</div>
+      </div>
+      <div class="pk">
+        <div class="pk-name">Benchmarking</div>
+        <div class="pk-desc">Pertemuan dan diskusi untuk bertukar informasi serta menjalin hubungan antara pengurus HMTI FT UNSIKA dengan kampus atau instansi lain di luar Universitas Singaperbangsa Karawang</div>
+      </div>
+    </div>
+    <div class="dept-label" style="color:#F5A623;background:rgba(245,166,35,0.12)">Hubungan Luar & Riset</div>
+    <div class="proker-list">
+      <div class="pk">
+        <div class="pk-name">BINDES / IVD (Industrial Village Development)</div>
+        <div class="pk-desc">Program bina desa yang berfokus pada inovasi teknologi FarmShield untuk pengendalian hama ramah lingkungan serta sosialisasi motivasi pendidikan tinggi bagi siswa kelas XII. Proker kolaborasi antara Divisi Hubungan Luar dan Divisi Riset</div>
+      </div>
+    </div>
+    <div class="dept-label" style="color:#4F8EF7;background:rgba(79,142,247,0.12)">Divisi Kominfo</div>
+    <div class="proker-list">
+      <div class="pk">
+        <div class="pk-name">Interkom</div>
+        <div class="pk-desc">Program publikasi informasi terpadu melalui berbagai platform resmi HMTI FT UNSIKA yang mencakup sub-kegiatan HMTI Bangga, BIDCOM 26, IPK 26, dan HMTIVERSE bagi mahasiswa serta masyarakat umum</div>
+      </div>
+    </div>
+  `
+},
+
+/* 8 · Dept Aspirasi */
+{ accent:"#E05CCA", svg:"target", eyebrow:"Departemen Aspirasi",
+  title:"Pelayanan Mahasiswa & Minat Bakat",
+  html:`
+    <p>Departemen Aspirasi terdiri dari <b>Divisi Pelayanan Mahasiswa</b> (3 proker) dan <b>Divisi Pengembangan Minat dan Bakat</b> (3 proker), memastikan suara dan kebutuhan mahasiswa TI terfasilitasi dengan baik.</p>
+    <div class="dept-label" style="color:#E05CCA;background:rgba(224,92,202,0.12)">Divisi Pelayanan Mahasiswa</div>
+    <div class="proker-list">
+      <div class="pk">
+        <div class="pk-name">Aksara TI</div>
+        <div class="pk-desc">Program pelayanan aspirasi mahasiswa TI FT UNSIKA yang memfasilitasi penyampaian kritik, saran, dan keluhan secara daring maupun luring guna menghubungkan mahasiswa dengan pihak civitas akademika</div>
+      </div>
+      <div class="pk">
+        <div class="pk-name">INDUSIGHT</div>
+        <div class="pk-desc">Sarana penyediaan dan penyaluran informasi terpadu terkait kompetisi, beasiswa, pelatihan, hingga magang bagi mahasiswa TI FT UNSIKA melalui berbagai platform digital resmi</div>
+      </div>
+      <div class="pk">
+        <div class="pk-name">RISE</div>
+        <div class="pk-desc">Program seminar dan pelatihan strategis bagi mahasiswa TI FT UNSIKA untuk meningkatkan kesiapan menghadapi seleksi beasiswa melalui pemahaman persyaratan hingga teknik penulisan esai</div>
+      </div>
+    </div>
+    <div class="dept-label" style="color:#34C98E;background:rgba(52,201,142,0.12)">Divisi Pengembangan Minat dan Bakat</div>
+    <div class="proker-list">
+      <div class="pk">
+        <div class="pk-name">IETSC (Industrial Engineering Teach and Sharing Club)</div>
+        <div class="pk-desc">Wadah pelatihan mahasiswa TI FT UNSIKA yang mencakup berbagai bidang seni dan olahraga, mulai dari cabang atletik, e-sports, hingga desain kreatif</div>
+      </div>
+      <div class="pk">
+        <div class="pk-name">POSE</div>
+        <div class="pk-desc">Program rutin tahunan sebagai sarana mahasiswa TI FT UNSIKA untuk menyalurkan dan mengembangkan potensi nonakademik melalui berbagai perlombaan di bidang olahraga dan seni</div>
+      </div>
+      <div class="pk">
+        <div class="pk-name">Dies Natalis</div>
+        <div class="pk-desc">Perayaan ulang tahun HMTI FT UNSIKA dengan rangkaian berupa I-ACT (Industrial Care in Action), Santunan, dan Industrial Festival Vol. 2</div>
+      </div>
+    </div>
+  `
+},
+
+/* 9 · Sosmed */
+{ accent:"#4F8EF7", svg:"device", eyebrow:"Temukan HMTI",
+  title:"HMTI di Semua Platform",
+  html:`
+    <p>Follow semua akun resmi HMTI agar kamu selalu dapat info terkini soal kegiatan, beasiswa, kompetisi, dan konten edukatif Teknik Industri!</p>
+    <div class="socials">
+      <div class="srow"><div class="si" style="background:rgba(225,48,108,0.13);color:#E1306C">IG</div><div><div class="ct">Instagram</div><div class="cs">@hmti_unsika</div></div></div>
+      <div class="srow"><div class="si" style="background:rgba(255,0,0,0.10);color:#FF3B30">YT</div><div><div class="ct">YouTube</div><div class="cs">@hmtiftunsika4709</div></div></div>
+      <div class="srow"><div class="si" style="background:rgba(255,255,255,0.06);color:var(--text)">TT</div><div><div class="ct">TikTok</div><div class="cs">@hmtiftunsika</div></div></div>
+      <div class="srow"><div class="si" style="background:rgba(255,255,255,0.06);color:var(--text)">X</div><div><div class="ct">X / Twitter</div><div class="cs">@HmtiUnsika</div></div></div>
+      <div class="srow"><div class="si" style="background:rgba(0,119,181,0.13);color:#0A66C2">IN</div><div><div class="ct">LinkedIn</div><div class="cs">HMTI FT UNSIKA</div></div></div>
+      <div class="srow"><div class="si" style="background:rgba(24,119,242,0.13);color:#1877F2">FB</div><div><div class="ct">Facebook</div><div class="cs">HMTI FT Unsika</div></div></div>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="dot" style="background:#25D366"></div><div><div class="ct">WhatsApp</div><div class="cs">0896-7102-7586</div></div></div>
+      <div class="card"><div class="dot" style="background:#4F8EF7"></div><div><div class="ct">Email</div><div class="cs">hmti.unsika@gmail.com</div></div></div>
+      <div class="card"><div class="dot" style="background:#4F8EF7"></div><div><div class="ct">Website Resmi</div><div class="cs">hmti.ft.unsika.ac.id</div></div></div>
+    </div>
+  `
+},
+
+/* 10 · CTA */
+{ accent:"#4F8EF7", svg:"chat", eyebrow:`Kelompok ${PJ.kelompok} · Ospek`,
+  title:`Gabung Grup Kelompok ${PJ.kelompok}!`,
+  isLast:true,
+  html:`
+    <p>Kamu sudah kenal prodi, HMTI, dan semua program kerjanya. Sekarang saatnya bergabung ke <b>Grup Kelompok ${PJ.kelompok}</b> untuk koordinasi kegiatan ospek kita!</p>
+    <div class="cards">
+      <div class="card"><div class="dot" style="background:#4F8EF7"></div><div><div class="ct">Info Kegiatan Ospek</div><div class="cs">Jadwal, lokasi, dan teknis kegiatan Kelompok ${PJ.kelompok}</div></div></div>
+      <div class="card"><div class="dot" style="background:#4F8EF7"></div><div><div class="ct">Pengumuman dari Panitia</div><div class="cs">Update penting sebelum dan saat kegiatan berlangsung</div></div></div>
+      <div class="card"><div class="dot" style="background:#4F8EF7"></div><div><div class="ct">Koordinasi Kelompok</div><div class="cs">Tempat kenalan dan ngobrol bareng anggota Kelompok ${PJ.kelompok} lainnya</div></div></div>
+    </div>
+    <p>Klik tombol di bawah untuk langsung menghubungi <b>${PJ.nama}</b> selaku PJ Kelompok ${PJ.kelompok}. Kamu akan langsung dimasukkan ke dalam grup setelah itu!</p>
+  `
+}
+
+]; /* end SLIDES */
+
+/* ── ENGINE ── */
+let cur = 0;
+const total = SLIDES.length;
+
+function setAccent(hex){
+  document.documentElement.style.setProperty('--accent',hex);
+  document.getElementById('a1').style.background=hex;
+  document.getElementById('a2').style.background=hex;
+  document.getElementById('wmDot').style.background=hex;
+}
+
+function unlock(btn){
+  btn.classList.remove('locked');
+  btn.textContent='Lanjut →';
+  document.getElementById('scrollHint').classList.add('hidden');
+}
+
+function render(){
+  const slide=SLIDES[cur];
+  setAccent(slide.accent);
+
+  document.getElementById('stepLbl').textContent=
+    `${String(cur+1).padStart(2,'0')} / ${String(total).padStart(2,'0')}`;
+  document.getElementById('pFill').style.width=`${((cur+1)/total)*100}%`;
+
+  /* remove old */
+  const area=document.getElementById('slideArea');
+  const old=area.querySelector('.slide');
+  if(old){old.classList.add('out');setTimeout(()=>{if(old.parentNode)old.parentNode.removeChild(old)},220)}
+
+  /* build new */
+  const el=document.createElement('div');
+  el.className='slide';
+  el.innerHTML=
+    `<span class="slide-icon" style="background:${slide.accent}14;color:${slide.accent}">${svgIcon(slide.svg)}</span>`+
+    `<div class="eyebrow" style="color:${slide.accent};background:${slide.accent}1A">${slide.eyebrow}</div>`+
+    `<h1 class="slide-title">${slide.title}</h1>`+
+    `<div class="slide-body">${slide.html}</div>`+
+    `<div class="sentinel"></div>`;
+  area.appendChild(el);
+  el.scrollTop=0;
+  requestAnimationFrame(()=>el.classList.add('in'));
+
+  /* buttons */
+  const bottom=document.getElementById('bottom');
+
+  if(slide.isLast){
+    document.getElementById('scrollHint').classList.add('hidden');
+    const url=`https://wa.me/${PJ.wa}?text=${encodeURIComponent(PJ.pesan)}`;
+    bottom.innerHTML=
+      `<a class="btn" href="${url}" target="_blank" rel="noopener" style="background:#25D366">`+
+      `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`+
+      `Hubungi ${PJ.nama} · Kelompok ${PJ.kelompok}</a>`;
+    return;
+  }
+
+  bottom.innerHTML=
+    `<button class="btn locked" id="btnNext" style="background:${slide.accent}">Baca dulu sampai bawah ↓</button>`;
+  const btn=document.getElementById('btnNext');
+  btn.addEventListener('click',()=>go(cur+1));
+
+  /* scroll-unlock via IntersectionObserver — reliable on all Android browsers */
+  const sentinel=el.querySelector('.sentinel');
+
+  /* double-rAF ensures layout is complete before measuring */
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    const needsScroll=el.scrollHeight>el.clientHeight+8;
+    if(!needsScroll){unlock(btn);return;}
+
+    document.getElementById('scrollHint').classList.remove('hidden');
+
+    const obs=new IntersectionObserver(entries=>{
+      if(entries[0].isIntersecting){unlock(btn);obs.disconnect();}
+    },{root:el,threshold:0.5});
+    obs.observe(sentinel);
+  }));
+}
+
+function go(i){cur=Math.min(Math.max(i,0),total-1);render();}
+
+/* ── Halaman pemilih kelompok (tampil kalau ?kelompok= tidak ada / salah) ── */
+function renderPicker(){
+  document.getElementById('stepLbl').textContent = 'Pilih Kelompok';
+  document.getElementById('scrollHint').classList.add('hidden');
+  document.getElementById('pFill').style.width = '0%';
+  setAccent('#4F8EF7');
+
+  const area = document.getElementById('slideArea');
+  const el = document.createElement('div');
+  el.className = 'slide in';
+
+  const colors = ['#4F8EF7','#34C98E','#7B6EF6','#F5A623','#E05CCA','#34C98E','#7B6EF6','#4F8EF7'];
+  let cardsHTML = '';
+  for (let i = 1; i <= 8; i++) {
+    const p = PJ_LIST[i];
+    cardsHTML += `
+      <button class="picker-card" data-kelompok="${i}" style="--pc:${colors[i-1]}">
+        <span class="picker-num" style="background:${colors[i-1]}22;color:${colors[i-1]}">${i}</span>
+        <span class="picker-info">
+          <span class="picker-kelompok">Kelompok ${i}</span>
+          <span class="picker-nama">${p.nama}</span>
+        </span>
+        <span class="picker-arrow">→</span>
+      </button>`;
+  }
+
+  el.innerHTML = `
+    <span class="slide-icon" style="background:#4F8EF714;color:#4F8EF7">${svgIcon('wave')}</span>
+    <div class="eyebrow" style="color:#4F8EF7;background:#4F8EF71A">Maba Teknik Industri</div>
+    <h1 class="slide-title">Kamu Kelompok Berapa?</h1>
+    <div class="slide-body">
+      <p>Pilih kelompok ospek kamu untuk melihat perkenalan dan narahubung yang sesuai.</p>
+    </div>
+    <div class="picker-grid">${cardsHTML}</div>
+    <div class="sentinel"></div>
+  `;
+  area.appendChild(el);
+
+  el.querySelectorAll('.picker-card').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const k = btn.getAttribute('data-kelompok');
+      const newUrl = window.location.pathname + '?kelompok=' + k;
+      window.location.href = newUrl;
+    });
+  });
+
+  document.getElementById('bottom').innerHTML = '';
+}
+
+/* ── Halaman "ditutup" — tampil kalau WEBSITE_AKTIF = false ── */
+function renderClosed(){
+  document.getElementById('stepLbl').textContent = '';
+  document.getElementById('scrollHint').classList.add('hidden');
+  document.getElementById('pFill').style.width = '100%';
+  setAccent('#4F8EF7');
+
+  const area = document.getElementById('slideArea');
+  const el = document.createElement('div');
+  el.className = 'slide in';
+  el.innerHTML = `
+    <span class="slide-icon" style="background:#4F8EF714;color:#4F8EF7">${svgIcon('door')}</span>
+    <div class="eyebrow" style="color:#4F8EF7;background:#4F8EF71A">Periode Ospek Telah Berakhir</div>
+    <h1 class="slide-title">Sampai Jumpa di Ospek Tahun Depan</h1>
+    <div class="slide-body">
+      <p>Halaman perkenalan dan pendaftaran grup untuk periode ospek ini sudah ditutup. Terima kasih sudah menjadi bagian dari kegiatan ospek Teknik Industri UNSIKA.</p>
+      <p>Apabila kamu sudah tergabung di grup kelas, seluruh informasi perkuliahan akan tetap berlanjut di sana.</p>
+    </div>
+    <div class="sentinel"></div>
+  `;
+  area.appendChild(el);
+  document.getElementById('bottom').innerHTML = '';
+}
+
+function boot(){
+  if (!WEBSITE_AKTIF) {
+    renderClosed();
+    return;
+  }
+
+  if (validKelompok) {
+    render();
+  } else {
+    renderPicker();
+  }
+}
+
+boot();
+</script>
+</body>
+</html>
