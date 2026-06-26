@@ -664,11 +664,11 @@ export default function Home() {
               <Link href="#" className="text-[0.8rem] font-semibold text-[var(--color-navy-700)] mt-4 inline-block tracking-[0.02em]">Lihat →</Link>
             </div>
 
-            {/* Card 4: Prestasi */}
+            {/* Card 4: Magang */}
             <div className="info-card reveal reveal-delay-4">
-              <div className="card-icon bg-[#fce7f3]">🌟</div>
-              <h3 className="font-display font-bold text-[var(--color-navy-900)] mb-[0.5rem] text-[1rem]">Prestasi</h3>
-              <p className="text-[0.85rem] text-gray-500 leading-[1.65]">Pencapaian mahasiswa Teknik Industri Unsika.</p>
+              <div className="card-icon bg-[#fce7f3]">💼</div>
+              <h3 className="font-display font-bold text-[var(--color-navy-900)] mb-[0.5rem] text-[1rem]">Magang</h3>
+              <p className="text-[0.85rem] text-gray-500 leading-[1.65]">Informasi lowongan magang dan pengembangan karier mahasiswa Teknik Industri Unsika.</p>
               <Link href="#" className="text-[0.8rem] font-semibold text-[var(--color-navy-700)] mt-4 inline-block tracking-[0.02em]">Lihat →</Link>
             </div>
 
