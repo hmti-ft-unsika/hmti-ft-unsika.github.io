@@ -641,7 +641,7 @@ export default function Home() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {/* Card 1: Akademis */}
-            <div className="info-card reveal reveal-delay-1 opacity-50 grayscale pointer-events-none">
+            <div className="info-card reveal reveal-delay-1">
               <div className="card-icon bg-[#dce8ff]">📋</div>
               <h3 className="font-display font-bold text-[var(--color-navy-900)] mb-[0.5rem] text-[1rem]">Webinar/Seminar</h3>
               <p className="text-[0.85rem] text-gray-500 leading-[1.65]">Webinar/Seminar untuk mengasah soft skill dan hard skill</p>
@@ -649,7 +649,7 @@ export default function Home() {
             </div>
 
             {/* Card 2: Beasiswa */}
-            <div className="info-card reveal reveal-delay-2 opacity-50 grayscale pointer-events-none">
+            <div className="info-card reveal reveal-delay-2">
               <div className="card-icon bg-[#fef3c7]">🎓</div>
               <h3 className="font-display font-bold text-[var(--color-navy-900)] mb-[0.5rem] text-[1rem]">Beasiswa</h3>
               <p className="text-[0.85rem] text-gray-500 leading-[1.65]">Info beasiswa dalam dan luar negeri, persyaratan, serta panduan pendaftaran.</p>
@@ -657,7 +657,7 @@ export default function Home() {
             </div>
 
             {/* Card 3: Lomba */}
-            <div className="info-card reveal reveal-delay-3 opacity-50 grayscale pointer-events-none">
+            <div className="info-card reveal reveal-delay-3">
               <div className="card-icon bg-[#d1fae5]">🏆</div>
               <h3 className="font-display font-bold text-[var(--color-navy-900)] mb-[0.5rem] text-[1rem]">Lomba</h3>
               <p className="text-[0.85rem] text-gray-500 leading-[1.65]">Kompetisi nasional dan internasional bidang teknik, sains, dan inovasi terkini.</p>
