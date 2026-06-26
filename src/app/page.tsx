@@ -520,6 +520,10 @@ export default function Home() {
                 <div className="font-display font-extrabold text-[1.9rem] text-[var(--color-gold-500)]">4</div>
                 <div className="text-[0.82rem] text-white/55 mt-[2px]">Departemen</div>
               </div>
+              <div>
+                <div className="font-display font-extrabold text-[1.9rem] text-[var(--color-gold-500)]">8</div>
+                <div className="text-[0.82rem] text-white/55 mt-[2px]">Divisi</div>
+              </div>
             </div>
           </div>
 
@@ -639,10 +643,9 @@ export default function Home() {
             {/* Card 1: Akademis */}
             <div className="info-card reveal reveal-delay-1 opacity-50 grayscale pointer-events-none">
               <div className="card-icon bg-[#dce8ff]">📋</div>
-              <h3 className="font-display font-bold text-[var(--color-navy-900)] mb-[0.5rem] text-[1rem]">Akademis</h3>
-              <p className="text-[0.85rem] text-gray-500 leading-[1.65]">Jadwal kuliah, kurikulum, kalender akademik, dan panduan tugas akhir.</p>
-              {/*<Link href="#" className="text-[0.8rem] font-semibold text-[var(--color-navy-700)] mt-4 inline-block tracking-[0.02em]">Lihat →</Link>*/}
-              <div className="text-[0.8rem] font-semibold text-gray-400 mt-4 inline-block tracking-[0.02em]">Segera Hadir</div>
+              <h3 className="font-display font-bold text-[var(--color-navy-900)] mb-[0.5rem] text-[1rem]">Webinar/Seminar</h3>
+              <p className="text-[0.85rem] text-gray-500 leading-[1.65]">Webinar/Seminar untuk mengasah soft skill dan hard skill</p>
+              <Link href="#" className="text-[0.8rem] font-semibold text-[var(--color-navy-700)] mt-4 inline-block tracking-[0.02em]">Lihat →</Link>
             </div>
 
             {/* Card 2: Beasiswa */}
@@ -650,8 +653,7 @@ export default function Home() {
               <div className="card-icon bg-[#fef3c7]">🎓</div>
               <h3 className="font-display font-bold text-[var(--color-navy-900)] mb-[0.5rem] text-[1rem]">Beasiswa</h3>
               <p className="text-[0.85rem] text-gray-500 leading-[1.65]">Info beasiswa dalam dan luar negeri, persyaratan, serta panduan pendaftaran.</p>
-              {/*<Link href="#" className="text-[0.8rem] font-semibold text-[var(--color-navy-700)] mt-4 inline-block tracking-[0.02em]">Lihat →</Link>*/}
-              <div className="text-[0.8rem] font-semibold text-gray-400 mt-4 inline-block tracking-[0.02em]">Segera Hadir</div>
+              <Link href="#" className="text-[0.8rem] font-semibold text-[var(--color-navy-700)] mt-4 inline-block tracking-[0.02em]">Lihat →</Link>
             </div>
 
             {/* Card 3: Lomba */}
@@ -659,8 +661,7 @@ export default function Home() {
               <div className="card-icon bg-[#d1fae5]">🏆</div>
               <h3 className="font-display font-bold text-[var(--color-navy-900)] mb-[0.5rem] text-[1rem]">Lomba</h3>
               <p className="text-[0.85rem] text-gray-500 leading-[1.65]">Kompetisi nasional dan internasional bidang teknik, sains, dan inovasi terkini.</p>
-              {/*<Link href="#" className="text-[0.8rem] font-semibold text-[var(--color-navy-700)] mt-4 inline-block tracking-[0.02em]">Lihat →</Link>*/}
-              <div className="text-[0.8rem] font-semibold text-gray-400 mt-4 inline-block tracking-[0.02em]">Segera Hadir</div>
+              <Link href="#" className="text-[0.8rem] font-semibold text-[var(--color-navy-700)] mt-4 inline-block tracking-[0.02em]">Lihat →</Link>
             </div>
 
             {/* Card 4: Prestasi */}
