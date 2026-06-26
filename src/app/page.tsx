@@ -645,7 +645,7 @@ export default function Home() {
               <div className="card-icon bg-[#dce8ff]">📋</div>
               <h3 className="font-display font-bold text-[var(--color-navy-900)] mb-[0.5rem] text-[1rem]">Webinar/Seminar</h3>
               <p className="text-[0.85rem] text-gray-500 leading-[1.65]">Webinar/Seminar untuk mengasah soft skill dan hard skill</p>
-              <Link href="#" className="text-[0.8rem] font-semibold text-[var(--color-navy-700)] mt-4 inline-block tracking-[0.02em]">Lihat →</Link>
+              <Link href="https://docs.google.com/spreadsheets/d/1MJBEXzmJZJ8UJwkYomoOFPPwd1ltQ9fyaCHXoBUA1oo/edit?gid=937314759#gid=937314759" className="text-[0.8rem] font-semibold text-[var(--color-navy-700)] mt-4 inline-block tracking-[0.02em]">Lihat →</Link>
             </div>
 
             {/* Card 2: Beasiswa */}
@@ -653,7 +653,7 @@ export default function Home() {
               <div className="card-icon bg-[#fef3c7]">🎓</div>
               <h3 className="font-display font-bold text-[var(--color-navy-900)] mb-[0.5rem] text-[1rem]">Beasiswa</h3>
               <p className="text-[0.85rem] text-gray-500 leading-[1.65]">Info beasiswa dalam dan luar negeri, persyaratan, serta panduan pendaftaran.</p>
-              <Link href="#" className="text-[0.8rem] font-semibold text-[var(--color-navy-700)] mt-4 inline-block tracking-[0.02em]">Lihat →</Link>
+              <Link href="https://docs.google.com/spreadsheets/d/1MJBEXzmJZJ8UJwkYomoOFPPwd1ltQ9fyaCHXoBUA1oo/edit?gid=1385981203#gid=1385981203" className="text-[0.8rem] font-semibold text-[var(--color-navy-700)] mt-4 inline-block tracking-[0.02em]">Lihat →</Link>
             </div>
 
             {/* Card 3: Lomba */}
@@ -661,15 +661,15 @@ export default function Home() {
               <div className="card-icon bg-[#d1fae5]">🏆</div>
               <h3 className="font-display font-bold text-[var(--color-navy-900)] mb-[0.5rem] text-[1rem]">Lomba</h3>
               <p className="text-[0.85rem] text-gray-500 leading-[1.65]">Kompetisi nasional dan internasional bidang teknik, sains, dan inovasi terkini.</p>
-              <Link href="#" className="text-[0.8rem] font-semibold text-[var(--color-navy-700)] mt-4 inline-block tracking-[0.02em]">Lihat →</Link>
+              <Link href="https://docs.google.com/spreadsheets/d/1MJBEXzmJZJ8UJwkYomoOFPPwd1ltQ9fyaCHXoBUA1oo/edit?gid=0#gid=0" className="text-[0.8rem] font-semibold text-[var(--color-navy-700)] mt-4 inline-block tracking-[0.02em]">Lihat →</Link>
             </div>
 
             {/* Card 4: Magang */}
             <div className="info-card reveal reveal-delay-4">
-              <div className="card-icon bg-[#fce7f3]">💼</div>
-              <h3 className="font-display font-bold text-[var(--color-navy-900)] mb-[0.5rem] text-[1rem]">Magang</h3>
-              <p className="text-[0.85rem] text-gray-500 leading-[1.65]">Informasi lowongan magang dan pengembangan karier mahasiswa Teknik Industri Unsika.</p>
-              <Link href="#" className="text-[0.8rem] font-semibold text-[var(--color-navy-700)] mt-4 inline-block tracking-[0.02em]">Lihat →</Link>
+              <div className="card-icon bg-[#fce7f3]">🌟</div>
+              <h3 className="font-display font-bold text-[var(--color-navy-900)] mb-[0.5rem] text-[1rem]">Prestasi</h3>
+              <p className="text-[0.85rem] text-gray-500 leading-[1.65]">Pencapaian mahasiswa Teknik Industri Unsika.</p>
+              <Link href="https://docs.google.com/spreadsheets/d/1MJBEXzmJZJ8UJwkYomoOFPPwd1ltQ9fyaCHXoBUA1oo/edit?gid=1216092346#gid=1216092346" className="text-[0.8rem] font-semibold text-[var(--color-navy-700)] mt-4 inline-block tracking-[0.02em]">Lihat →</Link>
             </div>
 
             {/* Card 5: E-Library */}
