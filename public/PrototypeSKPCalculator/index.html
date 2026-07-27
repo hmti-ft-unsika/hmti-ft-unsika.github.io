@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kalkulator SKP — Teknik Industri UNSIKA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <div class="masthead__logos">
+      <img src="assets/img/logo_unsika.png" alt="Logo UNSIKA" class="masthead__logo masthead__logo--side" />
+      <img src="assets/img/logo_hmti.webp" alt="Logo HMTI" class="masthead__logo masthead__logo--main" />
+      <img src="assets/img/logo_sahitya.jpeg" alt="Logo Kabinet Sahitya Ardaya" class="masthead__logo masthead__logo--side masthead__logo--round" />
+    </div>
+    <p class="eyebrow">Kabinet Sahitya Ardaya &middot; HMTI &middot; Fakultas Teknik UNSIKA</p>
+    <h1>Kalkulator Satuan Kredit Prestasi</h1>
+    <p class="masthead__sub">Catat setiap prestasi, lihat skor terkumpul secara langsung, lalu unduh Berita Acara Verifikasi SKP dalam format Excel resmi.</p>
+
+    <nav class="chipnav" id="chipnav">
+      <a href="#identitas" class="chip">Identitas</a>
+      <a href="#rekap" class="chip">Rekap Skor</a>
+      <a href="#kegiatan" class="chip">Kegiatan</a>
+      <a href="#unduh" class="chip">Unduh Excel</a>
+    </nav>
+  </div>
+</header>
+
+<main class="sheet">
+
+  <section class="card" id="identitas">
+    <h2 class="card__title"><span class="card__no">01</span>Identitas Mahasiswa</h2>
+    <div class="field-grid">
+      <label class="field">
+        <span>Nama Mahasiswa</span>
+        <input type="text" id="nama" placeholder="cth. Kuachi" autocomplete="off" />
+      </label>
+      <label class="field">
+        <span>NPM</span>
+        <input type="text" id="npm" placeholder="cth. 21xxxxxxxx" autocomplete="off" />
+      </label>
+      <label class="field">
+        <span>Dosen Verifikasi</span>
+        <input type="text" id="dosen" placeholder="cth. Nama Dosen, S.T., M.T." autocomplete="off" />
+      </label>
+      <label class="field">
+        <span>Jenjang</span>
+        <select id="jenjang">
+          <option value="sarjana" selected>Sarjana (min. 250 SKP)</option>
+          <option value="diploma">Diploma (min. 200 SKP)</option>
+        </select>
+      </label>
+      <label class="field field--checkbox">
+        <input type="checkbox" id="angkatanLama" />
+        <span>Angkatan sebelum tahun 2021 (ambang minimal 150 SKP)</span>
+      </label>
+    </div>
+  </section>
+
+  <section class="card" id="rekap">
+    <h2 class="card__title"><span class="card__no">02</span>Rekap Skor</h2>
+    <div class="rekap">
+      <div class="rekap__total">
+        <span class="rekap__label">Jumlah Skor Akhir SKP</span>
+        <span class="rekap__value" id="totalScore">0</span>
+      </div>
+      <div class="rekap__status" id="rekapStatus">
+        <span id="statusText">Minimal 250 SKP &mdash; masih membutuhkan <strong id="statusGap">250</strong> poin lagi.</span>
+      </div>
+      <div class="rekap__bar">
+        <div class="rekap__bar-fill" id="progressBar"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="kegiatan">
+    <h2 class="card__title"><span class="card__no">03</span>Daftar Kegiatan</h2>
+    <p class="card__hint">Isi jumlah/frekuensi tiap kegiatan yang pernah Anda ikuti. Skor per baris dihitung otomatis (jumlah &times; skor satuan). Kolom tautan bukti bersifat opsional dan akan ikut ditulis ke file Excel.</p>
+    <div id="categoryList"></div>
+  </section>
+
+  <section class="card card--action" id="unduh">
+    <h2 class="card__title"><span class="card__no">04</span>Unduh Berita Acara (Excel)</h2>
+    <p class="card__hint">File akan dibuat dari template resmi (<code>assets/template.xlsx</code>) dengan format, border, dan tata letak yang sama persis &mdash; hanya kolom identitas dan skor yang terisi otomatis.</p>
+    <button id="downloadBtn" class="btn-primary">Unduh Excel (.xlsx)</button>
+    <p class="note" id="downloadNote"></p>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__logos">
+      <img src="assets/img/logo_unsika.png" alt="Logo UNSIKA" />
+      <img src="assets/img/logo_hmti.webp" alt="Logo HMTI" />
+      <img src="assets/img/logo_sahitya.jpeg" alt="Logo Kabinet Sahitya Ardaya" />
+    </div>
+    <p>&copy; <strong>Kalkulator SKP</strong> &mdash; HMTI &middot; Fakultas Teknik UNSIKA</p>
+    <p class="footer__legal">Berdasarkan Keputusan Rektor UNSIKA Nomor 9/UN64/KPT/2024 tentang Peningkatan Prestasi Mahasiswa melalui Pemberlakuan Sistem Kredit Prestasi. Alat bantu tidak resmi, dibuat untuk mempermudah rekapitulasi HMTI FT UNSIKA.</p>
+    <p class="footer__credit">Divisi Riset HMTI FT UNSIKA</p>
+  </footer>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
