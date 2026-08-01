@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kalkulator IPK & IPS — Teknik Industri UNSIKA</title>
+<meta name="description" content="Kalkulator IPK dan IPS untuk mahasiswa Teknik Industri UNSIKA, sesuai kurikulum 2024 dan skala penilaian UNSIKA.">
+<meta name="theme-color" content="#0a0d2b">
+
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/img/icon-192.png">
+<link rel="apple-touch-icon" href="assets/img/icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="#top">
+    <img src="assets/img/logo_hmti.webp" alt="Logo HMTI">
+    <div class="brand-text">
+      <span class="eyebrow">HMTI FT UNSIKA</span>
+      <span class="title">Kalkulator IPK & IPS</span>
+    </div>
+  </a>
+  <span class="header-tag">Kabinet Sahitya Ardaya</span>
+</header>
+
+<section class="hero" id="top">
+  <span class="kicker">✦ Teknik Industri · Kurikulum 2024</span>
+  <h1>Hitung IPS &amp; IPK kamu <span>tanpa ribet</span></h1>
+  <p>Pilih semester, mata kuliah dan SKS otomatis terisi sesuai kurikulum resmi Teknik Industri UNSIKA — tinggal masukkan nilai. Atau pakai Mode Cepat kalau kamu sudah tahu IPS tiap semester.</p>
+
+  <div class="hero-stats">
+    <div class="stat-chip">
+      <div class="num" id="hero-total-sks">0</div>
+      <div class="lbl">Total SKS</div>
+    </div>
+    <div class="stat-chip">
+      <div class="num" id="hero-ipk">0.00</div>
+      <div class="lbl">IPK Kumulatif</div>
+    </div>
+  </div>
+</section>
+
+<div class="mode-switch">
+  <button class="mode-btn active" id="btn-mode-detail" onclick="gantiMode('detail')">📘 Mode Detail — per mata kuliah</button>
+  <button class="mode-btn" id="btn-mode-cepat" onclick="gantiMode('cepat')">⚡ Mode Cepat — isi IPS per semester</button>
+</div>
+
+<div class="install-banner" id="install-banner">
+  <div class="install-banner-inner">
+    <span>📲 Aplikasi ini bisa di-install di HP Android kamu seperti aplikasi biasa.</span>
+    <button class="btn btn-gold" id="btn-install">Install Aplikasi</button>
+  </div>
+</div>
+
+<main class="main-wrap">
+
+  <div id="detail-mode-container">
+    <p class="section-note">Pilih semester dari daftar, klik "Muat mata kuliah", lalu isi nilai tiap mata kuliah. Uncheck kolom "Ambil" untuk MK yang belum kamu ambil.</p>
+    <div id="semester-container"></div>
+    <button class="btn-tambah-semester" onclick="tambahSemester()">+ Tambah Blok Semester</button>
+  </div>
+
+  <div id="cepat-mode-container" style="display:none;">
+    <p class="section-note">Sudah tahu IPS tiap semester dari KHS/transkrip? Centang semester yang mau dihitung (misalnya semester 1–7), masukkan IPS-nya, IPK kumulatif langsung muncul.</p>
+    <div class="semester-card">
+      <div class="mk-table-wrap">
+        <table class="mk-table">
+          <thead>
+            <tr>
+              <th style="width:10%">Pakai</th>
+              <th>Semester</th>
+              <th class="col-sks">SKS</th>
+              <th class="col-nilai">IPS</th>
+            </tr>
+          </thead>
+          <tbody id="cepat-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-logos">
+    <img src="assets/img/logo_unsika.png" alt="Logo UNSIKA">
+    <img src="assets/img/logo_hmti.webp" alt="Logo HMTI">
+    <img src="assets/img/logo_sahitya.jpeg" alt="Logo Kabinet Sahitya Ardaya" style="border-radius:50%;">
+  </div>
+  <p class="org-line">Himpunan Mahasiswa Teknik Industri — Fakultas Teknik UNSIKA</p>
+  <p>Kabinet Sahitya Ardaya</p>
+  <p>Alat bantu tidak resmi, angka hasil perhitungan bersifat estimasi. Rujukan resmi tetap KHS/transkrip dari BAAK.</p>
+</footer>
+
+<div class="summary-bar">
+  <div class="summary-bar-inner">
+    <div class="grp">
+      <div class="lbl">Total SKS Lulus</div>
+      <div class="val" id="total-sks">0</div>
+    </div>
+    <div class="grp right">
+      <div class="lbl">IPK Kumulatif</div>
+      <div class="val ipk" id="ipk-value">0.00</div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    });
+  }
+  let deferredPrompt;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    document.getElementById('install-banner').classList.add('show');
+  });
+  document.getElementById('btn-install').addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    document.getElementById('install-banner').classList.remove('show');
+  });
+  window.addEventListener('appinstalled', () => {
+    document.getElementById('install-banner').classList.remove('show');
+  });
+</script>
+</body>
+</html>

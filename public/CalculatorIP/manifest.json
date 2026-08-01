@@ -1,0 +1,25 @@
+{
+  "name": "Kalkulator IPK & IPS - Teknik Industri UNSIKA",
+  "short_name": "Kalkulator IPK",
+  "description": "Kalkulator IPK dan IPS untuk mahasiswa Teknik Industri UNSIKA sesuai kurikulum 2024.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0d2b",
+  "theme_color": "#0a0d2b",
+  "icons": [
+    {
+      "src": "assets/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
