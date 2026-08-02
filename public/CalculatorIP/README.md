@@ -2,20 +2,18 @@
 
 Website statis untuk menghitung IPS per semester dan IPK kumulatif mahasiswa Teknik Industri UNSIKA, mengikuti kurikulum 2024 dan skala penilaian UNSIKA (A = 4,00, turun 0,25 tiap tingkat).
 
-Dibangun dengan HTML/CSS/JS murni (tanpa build tool), sehingga bisa langsung di-deploy ke GitHub Pages dan bisa diinstall sebagai aplikasi di Android (PWA).
+Dibangun dengan HTML/CSS/JS murni (tanpa build tool), sehingga bisa langsung di-deploy ke GitHub Pages. Tampilan sudah responsive — menyesuaikan otomatis di HP (Android/iOS), tablet, maupun desktop.
 
 ## Struktur folder
 
 ```
 pika-ipk/
 ├── index.html          -> halaman utama
-├── manifest.json        -> konfigurasi PWA (nama, ikon, warna)
-├── sw.js                -> service worker (cache offline)
 ├── .nojekyll             -> supaya GitHub Pages tidak memproses via Jekyll
 └── assets/
-    ├── css/style.css
+    ├── css/style.css     -> termasuk breakpoint responsive untuk berbagai ukuran layar
     ├── js/app.js         -> data kurikulum + logika perhitungan
-    └── img/              -> logo UNSIKA, HMTI, Sahitya Ardaya, ikon PWA
+    └── img/              -> logo UNSIKA, HMTI, Sahitya Ardaya
 ```
 
 ## Cara deploy ke GitHub Pages
@@ -42,18 +40,15 @@ pika-ipk/
 
 6. Buka link itu — website sudah live.
 
-> Catatan: PWA (install ke HP, mode offline) hanya aktif kalau diakses lewat **HTTPS**. GitHub Pages sudah otomatis HTTPS, jadi tidak perlu setting tambahan.
+## Dukungan berbagai device
 
-## Cara install di Android (PWA)
+Tampilan sudah dibuat responsive dari awal — layout, ukuran teks, dan tabel mata kuliah otomatis menyesuaikan lebar layar, jadi tetap nyaman dipakai di:
 
-Setelah website live di GitHub Pages:
+- HP Android/iOS (layar kecil, termasuk yang sangat sempit)
+- Tablet
+- Laptop/desktop
 
-1. Buka link website-nya di **Chrome** (Android).
-2. Chrome akan menampilkan banner "Install Aplikasi" di halaman (atau tombol otomatis di address bar).
-3. Tekan **Install** — aplikasi akan muncul di homescreen HP seperti aplikasi biasa, lengkap dengan ikon logo HMTI.
-4. Aplikasi tetap bisa dibuka meski koneksi internet lemah/offline, karena file-nya sudah di-cache oleh service worker.
-
-Kalau banner install tidak muncul otomatis, mahasiswa juga tetap bisa install manual lewat menu **⋮ (titik tiga) → Tambahkan ke layar Utama / Install aplikasi** di Chrome.
+Tidak perlu setting tambahan apa pun; cukup buka link website-nya lewat browser HP (Chrome, dsb).
 
 ## Mengubah data kurikulum
 

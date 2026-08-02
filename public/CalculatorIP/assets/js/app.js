@@ -353,6 +353,15 @@ function hitungSemua() {
   document.getElementById("ipk-value").textContent = ipk.toFixed(2);
   document.getElementById("hero-total-sks").textContent = totalSksSemua;
   document.getElementById("hero-ipk").textContent = ipk.toFixed(2);
+
+  const fraksi = Math.max(0, Math.min(1, ipk / 4));
+  const posisiPersen = 4 + fraksi * 92;
+  const marker = document.getElementById("dim-marker");
+  const markerVal = document.getElementById("dim-marker-val");
+  if (marker && markerVal) {
+    marker.style.left = posisiPersen + "%";
+    markerVal.textContent = ipk.toFixed(2);
+  }
 }
 
 // inisialisasi

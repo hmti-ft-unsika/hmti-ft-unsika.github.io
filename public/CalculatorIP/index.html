@@ -5,15 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Kalkulator IPK & IPS — Teknik Industri UNSIKA</title>
 <meta name="description" content="Kalkulator IPK dan IPS untuk mahasiswa Teknik Industri UNSIKA, sesuai kurikulum 2024 dan skala penilaian UNSIKA.">
-<meta name="theme-color" content="#0a0d2b">
-
-<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#070B14">
 <link rel="icon" href="assets/img/icon-192.png">
-<link rel="apple-touch-icon" href="assets/img/icon-192.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -30,33 +27,72 @@
   <span class="header-tag">Kabinet Sahitya Ardaya</span>
 </header>
 
-<section class="hero" id="top">
-  <span class="kicker">✦ Teknik Industri · Kurikulum 2024</span>
-  <h1>Hitung IPS &amp; IPK kamu <span>tanpa ribet</span></h1>
-  <p>Pilih semester, mata kuliah dan SKS otomatis terisi sesuai kurikulum resmi Teknik Industri UNSIKA — tinggal masukkan nilai. Atau pakai Mode Cepat kalau kamu sudah tahu IPS tiap semester.</p>
+<div class="hero-center">
+  <div class="hero-logos">
+    <img src="assets/img/logo_unsika.png" alt="Logo UNSIKA">
+    <span class="divider"></span>
+    <img src="assets/img/logo_hmti.webp" alt="Logo HMTI">
+    <span class="divider"></span>
+    <img src="assets/img/logo_sahitya.jpeg" alt="Logo Kabinet Sahitya Ardaya" style="border-radius:50%;">
+  </div>
+  <span class="status-pill"><span class="dot"></span> Kabinet Sahitya Ardaya · HMTI · Fakultas Teknik UNSIKA</span>
+</div>
 
-  <div class="hero-stats">
-    <div class="stat-chip">
-      <div class="num" id="hero-total-sks">0</div>
-      <div class="lbl">Total SKS</div>
+<section class="hero" id="top">
+  <div class="title-block">
+    <span class="corner corner-tl"></span>
+    <span class="corner corner-tr"></span>
+    <span class="corner corner-bl"></span>
+    <span class="corner corner-br"></span>
+
+    <div class="tb-top">
+      <span class="doc-no">No. Dok — <b>TI/IPK/2024</b></span>
+      <span>Kabinet Sahitya Ardaya</span>
     </div>
-    <div class="stat-chip">
-      <div class="num" id="hero-ipk">0.00</div>
-      <div class="lbl">IPK Kumulatif</div>
+
+    <h1 class="tb-title">Kalkulator IPK &amp; <em>IPS</em></h1>
+    <p class="tb-desc">Alat bantu hitung IPS per semester dan IPK kumulatif, mengikuti kurikulum 2024 dan skala penilaian resmi Program Studi Teknik Industri UNSIKA.</p>
+
+    <div class="tb-meta">
+      <div class="field">
+        <span class="lbl">Program Studi</span>
+        <span class="val">Teknik Industri</span>
+      </div>
+      <div class="field">
+        <span class="lbl">Skala Nilai</span>
+        <span class="val">A = 4,00</span>
+      </div>
+      <div class="field">
+        <span class="lbl">SKS Terkumpul</span>
+        <span class="val live" id="hero-total-sks">0</span>
+      </div>
+      <div class="field">
+        <span class="lbl">IPK Saat Ini</span>
+        <span class="val live" id="hero-ipk">0.00</span>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="mode-switch">
-  <button class="mode-btn active" id="btn-mode-detail" onclick="gantiMode('detail')">📘 Mode Detail — per mata kuliah</button>
-  <button class="mode-btn" id="btn-mode-cepat" onclick="gantiMode('cepat')">⚡ Mode Cepat — isi IPS per semester</button>
+<div class="dim-wrap">
+  <div class="dim-caption">Posisi IPK pada skala 0,00 — 4,00</div>
+  <div class="dim-line">
+    <div class="dim-marker" id="dim-marker" style="left:4%">
+      <span class="dim-marker-val" id="dim-marker-val">0.00</span>
+      <span class="dim-marker-dot"></span>
+    </div>
+    <svg class="dim-svg" viewBox="0 0 100 20" preserveAspectRatio="none">
+      <line x1="4" y1="10" x2="96" y2="10" class="dim-track"></line>
+      <line x1="4" y1="4" x2="4" y2="16" class="dim-tick"></line>
+      <line x1="96" y1="4" x2="96" y2="16" class="dim-tick"></line>
+    </svg>
+  </div>
+  <div class="dim-scale-labels"><span>0,00</span><span>4,00</span></div>
 </div>
 
-<div class="install-banner" id="install-banner">
-  <div class="install-banner-inner">
-    <span>📲 Aplikasi ini bisa di-install di HP Android kamu seperti aplikasi biasa.</span>
-    <button class="btn btn-gold" id="btn-install">Install Aplikasi</button>
-  </div>
+<div class="mode-switch">
+  <button class="mode-btn active" id="btn-mode-detail" onclick="gantiMode('detail')">Mode Detail — per mata kuliah</button>
+  <button class="mode-btn" id="btn-mode-cepat" onclick="gantiMode('cepat')">Mode Cepat — isi IPS per semester</button>
 </div>
 
 <main class="main-wrap">
@@ -89,15 +125,12 @@
 </main>
 
 <footer class="site-footer">
-  <div class="footer-logos">
-    <img src="assets/img/logo_unsika.png" alt="Logo UNSIKA">
-    <img src="assets/img/logo_hmti.webp" alt="Logo HMTI">
-    <img src="assets/img/logo_sahitya.jpeg" alt="Logo Kabinet Sahitya Ardaya" style="border-radius:50%;">
+  <div class="footer-inner">
+    <p class="org-line">Himpunan Mahasiswa Teknik Industri — Fakultas Teknik UNSIKA</p>
+    <p>Kabinet Sahitya Ardaya</p>
+    <p>Alat bantu tidak resmi — angka bersifat estimasi. Rujukan resmi tetap KHS/transkrip BAAK.</p>
+    <p>Dibuat Oleh Divisi Riset - HMTI FT Unsika</p>
   </div>
-  <p class="org-line">Himpunan Mahasiswa Teknik Industri — Fakultas Teknik UNSIKA</p>
-  <p>Kabinet Sahitya Ardaya</p>
-  <p>Alat bantu tidak resmi, angka hasil perhitungan bersifat estimasi. Rujukan resmi tetap KHS/transkrip dari BAAK.</p>
-  <p>Divisi Riset - HMTI FT Unsika</p>
 </footer>
 
 <div class="summary-bar">
@@ -114,28 +147,5 @@
 </div>
 
 <script src="assets/js/app.js"></script>
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js').catch(() => {});
-    });
-  }
-  let deferredPrompt;
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    document.getElementById('install-banner').classList.add('show');
-  });
-  document.getElementById('btn-install').addEventListener('click', async () => {
-    if (!deferredPrompt) return;
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt = null;
-    document.getElementById('install-banner').classList.remove('show');
-  });
-  window.addEventListener('appinstalled', () => {
-    document.getElementById('install-banner').classList.remove('show');
-  });
-</script>
 </body>
 </html>
