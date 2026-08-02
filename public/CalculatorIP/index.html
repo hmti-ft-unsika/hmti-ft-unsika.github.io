@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kalkulator IPK & IPS — Teknik Industri UNSIKA</title>
+<meta name="description" content="Kalkulator IPK dan IPS untuk mahasiswa Teknik Industri UNSIKA, sesuai kurikulum 2024 dan skala penilaian UNSIKA.">
+<meta name="theme-color" content="#070B14">
+<link rel="icon" href="assets/img/icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="#top">
+    <img src="assets/img/logo_hmti.webp" alt="Logo HMTI">
+    <div class="brand-text">
+      <span class="eyebrow">HMTI FT UNSIKA</span>
+      <span class="title">Kalkulator IPK & IPS</span>
+    </div>
+  </a>
+  <span class="header-tag">Kabinet Sahitya Ardaya</span>
+</header>
+
+<div class="hero-center">
+  <div class="hero-logos">
+    <img src="assets/img/logo_unsika.png" alt="Logo UNSIKA">
+    <span class="divider"></span>
+    <img src="assets/img/logo_hmti.webp" alt="Logo HMTI">
+    <span class="divider"></span>
+    <img src="assets/img/logo_sahitya.jpeg" alt="Logo Kabinet Sahitya Ardaya" style="border-radius:50%;">
+  </div>
+  <span class="status-pill"><span class="dot"></span> Kabinet Sahitya Ardaya · HMTI · Fakultas Teknik UNSIKA</span>
+</div>
+
+<section class="hero" id="top">
+  <div class="title-block">
+    <span class="corner corner-tl"></span>
+    <span class="corner corner-tr"></span>
+    <span class="corner corner-bl"></span>
+    <span class="corner corner-br"></span>
+
+    <div class="tb-top">
+      <span class="doc-no">No. Dok — <b>TI/IPK/2024</b></span>
+      <span>Kabinet Sahitya Ardaya</span>
+    </div>
+
+    <h1 class="tb-title">Kalkulator IPK &amp; <em>IPS</em></h1>
+    <p class="tb-desc">Alat bantu hitung IPS per semester dan IPK kumulatif, mengikuti kurikulum 2024 dan skala penilaian resmi Program Studi Teknik Industri UNSIKA.</p>
+
+    <div class="tb-meta">
+      <div class="field">
+        <span class="lbl">Program Studi</span>
+        <span class="val">Teknik Industri</span>
+      </div>
+      <div class="field">
+        <span class="lbl">Skala Nilai</span>
+        <span class="val">A = 4,00</span>
+      </div>
+      <div class="field">
+        <span class="lbl">SKS Terkumpul</span>
+        <span class="val live" id="hero-total-sks">0</span>
+      </div>
+      <div class="field">
+        <span class="lbl">IPK Saat Ini</span>
+        <span class="val live" id="hero-ipk">0.00</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="dim-wrap">
+  <div class="dim-caption">Posisi IPK pada skala 0,00 — 4,00</div>
+  <div class="dim-line">
+    <div class="dim-marker" id="dim-marker" style="left:4%">
+      <span class="dim-marker-val" id="dim-marker-val">0.00</span>
+      <span class="dim-marker-dot"></span>
+    </div>
+    <svg class="dim-svg" viewBox="0 0 100 20" preserveAspectRatio="none">
+      <line x1="4" y1="10" x2="96" y2="10" class="dim-track"></line>
+      <line x1="4" y1="4" x2="4" y2="16" class="dim-tick"></line>
+      <line x1="96" y1="4" x2="96" y2="16" class="dim-tick"></line>
+    </svg>
+  </div>
+  <div class="dim-scale-labels"><span>0,00</span><span>4,00</span></div>
+</div>
+
+<div class="mode-switch">
+  <button class="mode-btn active" id="btn-mode-detail" onclick="gantiMode('detail')">Mode Detail — per mata kuliah</button>
+  <button class="mode-btn" id="btn-mode-cepat" onclick="gantiMode('cepat')">Mode Cepat — isi IPS per semester</button>
+</div>
+
+<main class="main-wrap">
+
+  <div id="detail-mode-container">
+    <p class="section-note">Pilih semester dari daftar, klik "Muat mata kuliah", lalu isi nilai tiap mata kuliah. Uncheck kolom "Ambil" untuk MK yang belum kamu ambil.</p>
+    <div id="semester-container"></div>
+    <button class="btn-tambah-semester" onclick="tambahSemester()">+ Tambah Blok Semester</button>
+  </div>
+
+  <div id="cepat-mode-container" style="display:none;">
+    <p class="section-note">Sudah tahu IPS tiap semester dari KHS/transkrip? Centang semester yang mau dihitung (misalnya semester 1–7), masukkan IPS-nya, IPK kumulatif langsung muncul.</p>
+    <div class="semester-card">
+      <div class="mk-table-wrap">
+        <table class="mk-table">
+          <thead>
+            <tr>
+              <th style="width:10%">Pakai</th>
+              <th>Semester</th>
+              <th class="col-sks">SKS</th>
+              <th class="col-nilai">IPS</th>
+            </tr>
+          </thead>
+          <tbody id="cepat-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="org-line">Himpunan Mahasiswa Teknik Industri — Fakultas Teknik UNSIKA</p>
+    <p>Kabinet Sahitya Ardaya</p>
+    <p>Alat bantu tidak resmi — angka bersifat estimasi. Rujukan resmi tetap KHS/transkrip BAAK.</p>
+    <p>Dibuat Oleh Divisi Riset - HMTI FT Unsika</p>
+  </div>
+</footer>
+
+<div class="summary-bar">
+  <div class="summary-bar-inner">
+    <div class="grp">
+      <div class="lbl">Total SKS Lulus</div>
+      <div class="val" id="total-sks">0</div>
+    </div>
+    <div class="grp right">
+      <div class="lbl">IPK Kumulatif</div>
+      <div class="val ipk" id="ipk-value">0.00</div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
