@@ -193,22 +193,6 @@ const agendaBulanIni = {
   kegiatan: [
     {
       id: 1,
-      tanggal: "19",
-      hari: "Rabu",
-      nama: "Studi Kunjungan Industri Batch 2",
-      deskripsi: "Pelaksanaan Acara",
-      highlight: true
-    },
-    {
-      id: 2,
-      tanggal: "31",
-      hari: "Senin",
-      nama: "Seminar Nasional Kewirausahaan",
-      deskripsi: "Pelaksanaan Acara",
-      highlight: true
-    },
-    {
-      id: 3,
       tanggal: "1",
       hari: "-",
       nama: "Open Registration BPC",
@@ -216,11 +200,27 @@ const agendaBulanIni = {
       highlight: true
     },
     {
-      id: 4,
+      id: 2,
       tanggal: "3",
       hari: "-",
       nama: "Ietsc",
       deskripsi: "Pelatihan",
+      highlight: true
+    },
+    {
+      id: 3,
+      tanggal: "19",
+      hari: "Rabu",
+      nama: "Studi Kunjungan Industri Batch 2",
+      deskripsi: "Pelaksanaan Acara",
+      highlight: true
+    },
+    {
+      id: 4,
+      tanggal: "31",
+      hari: "Senin",
+      nama: "Seminar Nasional Kewirausahaan",
+      deskripsi: "Pelaksanaan Acara",
       highlight: true
     },
     {
