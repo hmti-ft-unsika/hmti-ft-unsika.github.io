@@ -188,43 +188,51 @@ const kabinetData = {
 // Silakan ubah data di bawah ini setiap bulan untuk update proker
 // ==========================================
 const agendaBulanIni = {
-  bulan: "Bulan Juni",
+  bulan: "Bulan Agustus",
   tahun: "2026",
   kegiatan: [
     {
       id: 1,
-      tanggal: "4",
-      hari: "Senin",
-      nama: "Open Recruitment IVD",
-      deskripsi: "Panitia Pelaksana",
-      highlight: false
+      tanggal: "19",
+      hari: "Rabu",
+      nama: "Studi Kunjungan Industri Batch 2",
+      deskripsi: "Pelaksanaan Acara",
+      highlight: true
     },
     {
       id: 2,
-      tanggal: "15",
-      hari: "Jum'at",
-      nama: "Open Recruitment BPC & SNK",
-      deskripsi: "Panitia Pelaksana",
-      highlight: false
+      tanggal: "31",
+      hari: "Senin",
+      nama: "Seminar Nasional Kewirausahaan",
+      deskripsi: "Pelaksanaan Acara",
+      highlight: true
     },
     {
       id: 3,
-      tanggal: "17",
-      hari: "Selasa",
-      nama: "Open Registration SIKAP",
+      tanggal: "1-12",
+      hari: "-",
+      nama: "Open Registration BPC",
       deskripsi: "Pendaftaran",
       highlight: true
     },
     {
       id: 4,
-      tanggal: "-",
+      tanggal: "3-31",
       hari: "-",
-      nama: "Mentorship Class Batch I",
-      deskripsi: "Pelaksanaan Acara",
-      highlight: false
+      nama: "Ietsc",
+      deskripsi: "Pelatihan",
+      highlight: true
     },
     {
       id: 5,
+      tanggal: "-",
+      hari: "-",
+      nama: "IndusMart",
+      deskripsi: "Distribusi Batch 1",
+      highlight: false
+    },
+    {
+      id: 6,
       tanggal: "-",
       hari: "-",
       nama: "I-Pedia",
@@ -232,7 +240,7 @@ const agendaBulanIni = {
       highlight: false
     },
     {
-      id: 6,
+      id: 7,
       tanggal: "-",
       hari: "-",
       nama: "Kastrat",
@@ -240,7 +248,7 @@ const agendaBulanIni = {
       highlight: false
     },
     {
-      id: 7,
+      id: 8,
       tanggal: "-",
       hari: "-",
       nama: "PIKA",
@@ -251,16 +259,16 @@ const agendaBulanIni = {
       id: 8,
       tanggal: "-",
       hari: "-",
-      nama: "DEM",
-      deskripsi: "Edukasi Video",
-      highlight: false
+      nama: "HMTIVERSE",
+      deskripsi: "Podcast",
+      highlight: true
     },
     {
       id: 9,
       tanggal: "-",
       hari: "-",
-      nama: "IndusMart",
-      deskripsi: "Merchandise HMTI",
+      nama: "Mentorship Class",
+      deskripsi: "Pelatihan",
       highlight: false
     },
     {
@@ -289,14 +297,6 @@ const agendaBulanIni = {
     },
     {
       id: 13,
-      tanggal: "23",
-      hari: "Sabtu",
-      nama: "Benchmarking",
-      deskripsi: "Studi Banding",
-      highlight: false
-    },
-    {
-      id: 14,
       tanggal: "-",
       hari: "-",
       nama: "Aksara TI",
@@ -304,7 +304,7 @@ const agendaBulanIni = {
       highlight: false
     },
     {
-      id: 15,
+      id: 14,
       tanggal: "-",
       hari: "-",
       nama: "Indusight",
@@ -312,21 +312,13 @@ const agendaBulanIni = {
       highlight: false
     },
     {
-      id: 16,
+      id: 15,
       tanggal: "-",
       hari: "-",
-      nama: "IESTC",
-      deskripsi: "Pelatihan",
+      nama: "Sikap",
+      deskripsi: "Diskusi Ilmiah",
       highlight: false
-    },
-    {
-      id: 17,
-      tanggal: "27",
-      hari: "Rabu",
-      nama: "Open Registration SKI",
-      deskripsi: "Pendaftaran",
-      highlight: true
-    },
+    }
   ]
 };
 
