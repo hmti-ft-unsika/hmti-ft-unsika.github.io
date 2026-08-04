@@ -181,38 +181,17 @@
     }
     .announce-bar.show { display: block; }
 
-    /* Warna aksen per tipe — default info (blue→cyan) */
-    .announce-bar {
-      --acc-grad: var(--grad);
-      --acc-solid: var(--blue);
-      --acc-glow: rgba(59,98,245,.45);
-      --acc-bg-1: rgba(59,98,245,.16);
-      --acc-bg-2: rgba(11,188,212,.20);
-    }
-    .announce-bar.type-warning {
-      --acc-grad: linear-gradient(135deg,#f59e0b,#fbbf24);
-      --acc-solid: #f59e0b;
-      --acc-glow: rgba(245,158,11,.50);
-      --acc-bg-1: rgba(245,158,11,.14);
-      --acc-bg-2: rgba(251,191,36,.18);
-    }
-    .announce-bar.type-success {
-      --acc-grad: linear-gradient(135deg,#16a34a,#4ade80);
-      --acc-solid: var(--green);
-      --acc-glow: rgba(74,222,128,.45);
-      --acc-bg-1: rgba(22,163,74,.14);
-      --acc-bg-2: rgba(74,222,128,.18);
-    }
-
     /* Gradient background animasi */
     .announce-bg {
       position: absolute; inset: 0;
       background: linear-gradient(90deg,
-        var(--acc-bg-1) 0%, var(--acc-bg-2) 35%,
-        var(--acc-bg-1) 70%, var(--acc-bg-2) 100%);
+        rgba(59,98,245,.18) 0%,
+        rgba(0,180,216,.22) 35%,
+        rgba(59,98,245,.18) 70%,
+        rgba(0,180,216,.22) 100%);
       background-size: 200% 100%;
-      animation: announceBg 5s linear infinite;
-      border-bottom: 1px solid var(--acc-glow);
+      animation: announceBg 4s linear infinite;
+      border-bottom: 1px solid rgba(0,180,216,.25);
     }
     @keyframes announceBg {
       0%   { background-position: 0% 0%; }
@@ -225,10 +204,10 @@
       position: absolute; inset: 0;
       background: linear-gradient(105deg,
         transparent 40%,
-        rgba(255,255,255,.07) 50%,
+        rgba(255,255,255,.06) 50%,
         transparent 60%);
       background-size: 200% 100%;
-      animation: announceShine 4s ease-in-out infinite;
+      animation: announceShine 3.5s ease-in-out infinite;
     }
     @keyframes announceShine {
       0%   { background-position: 200% 0; }
@@ -240,8 +219,8 @@
       position: relative;
       display: flex;
       align-items: center;
-      padding: 0 14px;
-      height: 40px;
+      padding: 0 16px;
+      height: 38px;
       gap: 10px;
     }
 
@@ -249,22 +228,22 @@
     .announce-badge {
       display: flex;
       align-items: center;
-      gap: 6px;
-      background: var(--acc-grad);
+      gap: 5px;
+      background: var(--blue);
       color: #fff;
       font-size: 10px;
       font-weight: 800;
-      padding: 4px 11px;
+      padding: 3px 10px;
       border-radius: 999px;
       letter-spacing: .06em;
       text-transform: uppercase;
       flex-shrink: 0;
-      box-shadow: 0 0 12px var(--acc-glow);
+      box-shadow: 0 0 12px rgba(59,98,245,.40);
       animation: badgePulse 2.5s ease-in-out infinite;
     }
     @keyframes badgePulse {
-      0%,100% { box-shadow: 0 0 8px var(--acc-glow); }
-      50%      { box-shadow: 0 2px 20px var(--acc-glow); }
+      0%,100% { box-shadow: 0 0 8px rgba(59,98,245,.40); }
+      50%      { box-shadow: 0 0 18px rgba(59,98,245,.70); }
     }
     .announce-dot {
       width: 5px; height: 5px; border-radius: 50%;
@@ -272,115 +251,59 @@
       animation: dotBlink 1.2s ease-in-out infinite;
       flex-shrink: 0;
     }
-    @keyframes dotBlink { 0%,100%{opacity:1} 50%{opacity:.25} }
+    @keyframes dotBlink { 0%,100%{opacity:1} 50%{opacity:.2} }
 
-    /* Panggung pesan — 1 pesan tampil pada satu waktu, gantian dengan fade+slide */
-    .announce-stage {
+    /* Ticker / teks berjalan */
+    .announce-ticker {
       flex: 1;
-      min-width: 0;
-      position: relative;
-      height: 20px;
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
     }
-    .announce-slide {
-      position: absolute;
-      inset: 0;
+    .announce-track {
       display: flex;
+      white-space: nowrap;
+      animation: tickerScroll 20s linear infinite;
+      will-change: transform;
+    }
+    .announce-track:hover { animation-play-state: paused; }
+    @keyframes tickerScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .announce-item {
+      display: inline-flex;
       align-items: center;
       gap: 8px;
+      padding-right: 60px;
       font-size: 13px;
       font-weight: 500;
       color: var(--t1);
-      opacity: 0;
-      transform: translate3d(0,8px,0);
-      transition: opacity .4s ease, transform .4s ease;
-      pointer-events: none;
-      will-change: transform, opacity;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
     }
-    .announce-slide.active {
-      opacity: 1;
-      transform: translate3d(0,0,0);
-      pointer-events: auto;
-    }
-    .announce-slide.leaving {
-      opacity: 0;
-      transform: translate3d(0,-8px,0);
-    }
-    .announce-slide .a-icon {
-      font-size: 14px;
-      flex-shrink: 0;
-    }
-    .announce-slide .a-text {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      min-width: 0;
+    .announce-item .a-icon { font-size: 14px; flex-shrink: 0; }
+    .announce-item .a-sep {
+      color: var(--t3);
+      font-size: 16px;
+      opacity: .4;
     }
 
-    /* Titik navigasi (cuma muncul kalau pesan lebih dari 1) */
-    .announce-dots {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-shrink: 0;
-      padding: 0 2px;
-    }
-    .announce-dots button {
-      width: 6px; height: 6px;
-      padding: 0;
-      border: none;
-      border-radius: 50%;
-      background: rgba(255,255,255,.28);
-      cursor: pointer;
-      transition: background .2s ease, transform .2s ease;
-    }
-    .announce-dots button.active {
-      background: var(--acc-solid);
-      transform: scale(1.35);
-    }
-    .announce-dots button:hover { background: rgba(255,255,255,.5); }
-
-    /* Progress bar tipis di bawah — nunjukin countdown ke pesan berikutnya */
-    .announce-progress {
-      position: absolute;
-      left: 0; bottom: 0;
-      height: 2px;
-      width: 0%;
-      background: var(--acc-solid);
-      opacity: .55;
-    }
-    .announce-progress.animate { transition: width linear; }
-      display: inline-flex;
     /* Tombol close kanan */
     .announce-close {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 22px; height: 22px;
       background: rgba(255,255,255,.08);
       border: 1px solid rgba(255,255,255,.12);
-      border-radius: 50%;
+      border-radius: 6px;
       color: var(--t2);
       font-size: 12px;
       cursor: pointer;
+      padding: 3px 8px;
       flex-shrink: 0;
       line-height: 1;
-      padding: 0;
       transition: all .15s;
     }
     .announce-close:hover {
       background: rgba(248,113,113,.15);
       border-color: rgba(248,113,113,.30);
       color: var(--red);
-      transform: rotate(90deg);
-    }
-
-    /* Hormati pengguna yang matiin animasi (aksesibilitas + hemat baterai) */
-    @media (prefers-reduced-motion: reduce) {
-      .announce-slide { transition: opacity .15s linear !important; transform: none !important; }
-      .announce-progress { display: none !important; }
-      .announce-bg, .announce-bg::after, .announce-badge, .announce-dot { animation: none !important; }
     }
   </style>
 </head>
@@ -425,18 +348,20 @@
 
 
 <!-- ══════════ BANNER PENGUMUMAN ══════════ -->
-<div class="announce-bar" id="announceBar" role="region" aria-label="Pengumuman">
+<div class="announce-bar" id="announceBar">
   <div class="announce-bg"></div>
   <div class="announce-inner">
     <div class="announce-badge" id="announceBadge">
       <span class="announce-dot"></span>
       <span id="announceBadgeText">Pengumuman</span>
     </div>
-    <div class="announce-stage" id="announceStage"></div>
-    <div class="announce-dots" id="announceDots"></div>
-    <button class="announce-close" onclick="closeAnnounce()" title="Tutup pengumuman" aria-label="Tutup pengumuman">✕</button>
+    <div class="announce-ticker">
+      <div class="announce-track" id="announceTrack">
+        <!-- diisi JS -->
+      </div>
+    </div>
+    <button class="announce-close" onclick="closeAnnounce()" title="Tutup pengumuman">✕ Tutup</button>
   </div>
-  <div class="announce-progress" id="announceProgress"></div>
 </div>
 
 <!-- ══════════ HERO ══════════ -->
@@ -956,7 +881,7 @@
   // Ganti CUSTOM_PIN_OPEN = false → layanan ditutup
   // Edit CUSTOM_PIN_INFO untuk pesan tambahan
   // ============================================================
-  var CUSTOM_PIN_OPEN = true;
+  var CUSTOM_PIN_OPEN = false;
   var CUSTOM_PIN_INFO = 'Layanan dibuka setiap hari. PIN akan diaktifkan dalam 1x24 jam setelah pembayaran.';
   // ============================================================
 
@@ -1046,123 +971,62 @@
 
   // Bisa 1 teks atau beberapa teks sekaligus (dipisah koma)
   var ANNOUNCE_ITEMS = [
-    { icon: '📚', text: '"No Best Way, But Always A Better Way"' },
-    { icon: '🔔', text: 'Selamat Datang Mahasiswa Baru Angkatan 2026' },
+    { icon: '📚', text: '"Keberhasilan bukan milik orang yang pintar, melainkan milik mereka yang senantiasa berusaha dan tidak pernah berhenti belajar"~B.J. Habibie' },
+    { icon: '🔔', text: '' },
   ];
   // ============================================================
 
   (function initAnnounce() {
     if (!ANNOUNCE_ON) return;
 
-    var items = ANNOUNCE_ITEMS.filter(function (i) { return i.text && i.text.trim(); });
-    if (!items.length) return;
-
-    var closeKey = 'announce_v4_' + items.length + '_' + items[0].text.slice(0, 20);
+    var closeKey = 'announce_v2_' + ANNOUNCE_ITEMS.length + '_' + ANNOUNCE_ITEMS[0].text.slice(0,20);
     if (sessionStorage.getItem(closeKey)) return;
 
-    var bar      = document.getElementById('announceBar');
-    var btext    = document.getElementById('announceBadgeText');
-    var stage    = document.getElementById('announceStage');
-    var dotsWrap = document.getElementById('announceDots');
-    var progress = document.getElementById('announceProgress');
-    if (!bar || !stage) return;
+    var bar   = document.getElementById('announceBar');
+    var badge = document.getElementById('announceBadge');
+    var btext = document.getElementById('announceBadgeText');
+    var track = document.getElementById('announceTrack');
+    if (!bar || !track) return;
 
-    // Tipe badge — warna diatur lewat CSS class (.type-warning/.type-success), bukan inline style
-    var labels = { info: 'Pengumuman', warning: 'Perhatian', success: 'Info Baru' };
-    var type = (ANNOUNCE_TYPE === 'warning' || ANNOUNCE_TYPE === 'success') ? ANNOUNCE_TYPE : 'info';
-    bar.classList.add('type-' + type);
-    if (btext) btext.textContent = labels[type];
+    // Set tipe badge
+    var types = {
+      info    : { label: 'Pengumuman', color: 'var(--blue)',  bg: 'rgba(59,98,245,.18)',  border: 'rgba(0,180,216,.25)' },
+      warning : { label: 'Perhatian',  color: '#f59e0b',      bg: 'rgba(245,158,11,.15)', border: 'rgba(245,158,11,.25)' },
+      success : { label: 'Info Baru',  color: 'var(--green)', bg: 'rgba(74,222,128,.12)', border: 'rgba(74,222,128,.25)' },
+    };
+    var t = types[ANNOUNCE_TYPE] || types.info;
+    if (btext) btext.textContent = t.label;
+    if (badge) badge.style.background = t.color;
 
-    var ROTATE_MS    = 5000;
-    var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-
-    // Bikin satu slide per pesan
-    items.forEach(function (item, i) {
-      var el = document.createElement('div');
-      el.className = 'announce-slide' + (i === 0 ? ' active' : '');
-      el.innerHTML = '<span class="a-icon">' + item.icon + '</span><span class="a-text">' + item.text + '</span>';
-      stage.appendChild(el);
-    });
-    var slides = stage.querySelectorAll('.announce-slide');
-
-    // Bikin dot navigasi — cuma kalau pesannya lebih dari 1
-    var dots = [];
-    if (items.length > 1 && dotsWrap) {
-      items.forEach(function (_, i) {
-        var b = document.createElement('button');
-        b.type = 'button';
-        b.setAttribute('aria-label', 'Pengumuman ' + (i + 1) + ' dari ' + items.length);
-        if (i === 0) b.classList.add('active');
-        b.addEventListener('click', function () { goTo(i); resetTimer(); });
-        dotsWrap.appendChild(b);
-        dots.push(b);
-      });
-    }
-
-    var current = 0;
-    var timer   = null;
-    var paused  = false;
-
-    function goTo(idx) {
-      if (idx === current || idx < 0 || idx >= slides.length) return;
-      var prev = slides[current];
-      prev.classList.remove('active');
-      prev.classList.add('leaving');
-      setTimeout(function () { prev.classList.remove('leaving'); }, 420);
-      current = idx;
-      slides[current].classList.add('active');
-      dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
-    }
-
-    function next() { goTo((current + 1) % slides.length); }
-
-    function startProgress() {
-      if (!progress || reduceMotion) return;
-      progress.classList.remove('animate');
-      progress.style.width = '0%';
-      void progress.offsetWidth; // force reflow biar transisi ke-reset beneran
-      progress.style.transitionDuration = ROTATE_MS + 'ms';
-      progress.classList.add('animate');
-      requestAnimationFrame(function () { progress.style.width = '100%'; });
-    }
-
-    function resetTimer() {
-      if (timer) clearTimeout(timer);
-      if (slides.length <= 1 || reduceMotion || paused || document.hidden) return;
-      startProgress();
-      timer = setTimeout(function () { next(); resetTimer(); }, ROTATE_MS);
-    }
-
-    // Swipe kiri/kanan buat pindah pesan (mobile/Android)
-    var touchStartX = null;
-    stage.addEventListener('touchstart', function (e) {
-      touchStartX = e.touches[0].clientX;
-      paused = true;
-      if (timer) clearTimeout(timer);
-    }, { passive: true });
-    stage.addEventListener('touchend', function (e) {
-      if (touchStartX === null) return;
-      var dx = e.changedTouches[0].clientX - touchStartX;
-      if (Math.abs(dx) > 30 && slides.length > 1) {
-        if (dx < 0) goTo((current + 1) % slides.length);
-        else goTo((current - 1 + slides.length) % slides.length);
+    // Update warna background bar sesuai tipe
+    var bg = bar.querySelector('.announce-bg');
+    if (bg) {
+      if (ANNOUNCE_TYPE === 'warning') {
+        bg.style.background = 'linear-gradient(90deg, rgba(245,158,11,.15) 0%, rgba(251,191,36,.20) 50%, rgba(245,158,11,.15) 100%)';
+        bg.style.backgroundSize = '200% 100%';
+      } else if (ANNOUNCE_TYPE === 'success') {
+        bg.style.background = 'linear-gradient(90deg, rgba(74,222,128,.12) 0%, rgba(16,185,129,.18) 50%, rgba(74,222,128,.12) 100%)';
+        bg.style.backgroundSize = '200% 100%';
       }
-      touchStartX = null;
-      paused = false;
-      resetTimer();
-    }, { passive: true });
+    }
 
-    // Jeda pas di-hover (desktop) / disentuh, lanjut lagi pas dilepas
-    bar.addEventListener('mouseenter', function () { paused = true; if (timer) clearTimeout(timer); });
-    bar.addEventListener('mouseleave', function () { paused = false; resetTimer(); });
-
-    // Jeda pas tab gak aktif, biar gak buang resource & gak "loncat" pas balik
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden) { if (timer) clearTimeout(timer); }
-      else { resetTimer(); }
+    // Buat ticker items — duplikat 3x agar seamless
+    var html = '';
+    var items = ANNOUNCE_ITEMS.concat(ANNOUNCE_ITEMS).concat(ANNOUNCE_ITEMS);
+    items.forEach(function(item, i) {
+      html += '<span class="announce-item">' +
+        '<span class="a-icon">' + item.icon + '</span>' +
+        item.text +
+        '<span class="a-sep">·</span>' +
+        '</span>';
     });
+    track.innerHTML = html;
 
-    resetTimer();
+    // Sesuaikan kecepatan dengan panjang teks
+    var totalLen = ANNOUNCE_ITEMS.reduce(function(acc, i){ return acc + i.text.length; }, 0);
+    var duration = Math.max(15, totalLen * 0.25) + 's';
+    track.style.animationDuration = duration;
+
     bar.classList.add('show');
     bar.dataset.closeKey = closeKey;
   })();
