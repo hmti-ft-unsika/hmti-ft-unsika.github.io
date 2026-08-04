@@ -209,7 +209,7 @@ const agendaBulanIni = {
     },
     {
       id: 3,
-      tanggal: "1-12",
+      tanggal: "1",
       hari: "-",
       nama: "Open Registration BPC",
       deskripsi: "Pendaftaran",
@@ -217,7 +217,7 @@ const agendaBulanIni = {
     },
     {
       id: 4,
-      tanggal: "3-31",
+      tanggal: "3",
       hari: "-",
       nama: "Ietsc",
       deskripsi: "Pelatihan",
