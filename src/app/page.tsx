@@ -66,7 +66,7 @@ const programKerjaList = [
     category: "Riset",
     desc: "Sistem basis data berbasis website terpadu yang menyediakan materi perkuliahan, panduan akademik, dan software pendukung bagi mahasiswa Teknik Industri FT Unsika dalam satu wadah terstruktur.",
     linkText: "Akses Pika",
-    link: "https://pikahmtiftunsika.great-site.net/index.php",
+    link: "https://hmti.ft.unsika.ac.id/pika",
   },
   {
     title: "BPC",
@@ -665,7 +665,7 @@ export default function Home() {
             </Link>
 
             {/* Card 5: E-Library */}
-            <Link href="pika/index.html" className="info-card reveal reveal-delay-5 block no-underline" style={{ borderColor: "#e0e9ff", background: "linear-gradient(135deg,#f0f4ff,#fff)" }}>
+            <Link href="https://hmti.ft.unsika.ac.id/pika" className="info-card reveal reveal-delay-5 block no-underline" style={{ borderColor: "#e0e9ff", background: "linear-gradient(135deg,#f0f4ff,#fff)" }}>
               <div className="card-icon bg-[#c7d2fe]">📚</div>
               <h3 className="font-display font-bold text-[var(--color-navy-900)] mb-[0.5rem] text-[1rem]">Pika</h3>
               <p className="text-[0.85rem] text-gray-500 leading-[1.65]">Koleksi modul, jurnal, dan materi pembelajaran digital eksklusif untuk mahasiswa.</p>
