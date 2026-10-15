@@ -44,7 +44,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-8">
             <Link href="/#beranda" className="nav-link">Beranda</Link>
             <Link href="/#profil" className="nav-link">Profil</Link>
-            <Link href="https://pikahmtiftunsika.great-site.net/index.php" className="nav-link">Pika</Link>
+            <Link href="https://hmti.ft.unsika.ac.id/pika" className="nav-link">Pika</Link>
             <Link href="/#informasi" className="nav-link">Informasi Mahasiswa</Link>
             <Link href="/#berita" className="nav-link">Berita</Link>
             <Link href="/#aspirasi" className="btn-gold text-sm py-2 px-5 ml-2">Aspirasi</Link>
